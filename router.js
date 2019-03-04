@@ -22,7 +22,7 @@ export default class RootRouter extends Component {
 
   render() {
     return (
-      <Router backAndroidHandler={this.onBackPress}>
+      <Router backAndroidHandler={() => this.onBackPress()}>
         <Scene key="root">
           <Scene
             key="tab"
