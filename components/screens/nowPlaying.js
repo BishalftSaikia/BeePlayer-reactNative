@@ -6,13 +6,10 @@ import {
   TouchableOpacity,
   Image,
   ToastAndroid,
-  Modal,
   AsyncStorage,
-  StatusBar,
   PanResponder,
   Animated,
-  Dimensions,
-  FlatList
+  Dimensions
 } from "react-native";
 
 import Icon from "react-native-vector-icons/Feather";
@@ -44,21 +41,25 @@ export default class NowPlaying extends Component {
       },
       onPanResponderRelease: (evt, gestureState) => {
         if (gestureState.moveY > screenHeight - 90) {
+          //......................when Pan is at bottom and try to move beyond.
           Animated.spring(this.animation.y, {
             toValue: 0,
             tension: 60
           }).start();
-        } else if (gestureState.moveY < 120 && gestureState.dy > 0) {
+        } else if (gestureState.moveY < 120 && gestureState.dy < 0) {
+          //.......................when Pan is at top(zero) and try to move beyond.
           Animated.spring(this.animation.y, {
             toValue: 0,
             tension: 60
           }).start();
         } else if (gestureState.dy < 0) {
+          //.......................Pan Moving Upward
           Animated.spring(this.animation.y, {
             toValue: -screenHeight + 90,
             tension: 60
           }).start();
         } else if (gestureState.dy > 0) {
+          //.......................Pan moving Downward
           Animated.spring(this.animation.y, {
             toValue: screenHeight - 90,
             tension: 60
@@ -204,7 +205,7 @@ export default class NowPlaying extends Component {
               }
             ]}
           >
-            <Animated.View //...........................Header.....
+            <Animated.View //................................................Header.....
               {...this.PanResponder.panHandlers}
               style={{
                 height: animatedHeaderHeight,
@@ -281,7 +282,7 @@ export default class NowPlaying extends Component {
                 </TouchableOpacity>
               </Animated.View>
             </Animated.View>
-            <Animated.View //...................Body
+            <Animated.View //....................................................Body
               style={{
                 height: screenHeight / 2,
                 justifyContent: "center",
