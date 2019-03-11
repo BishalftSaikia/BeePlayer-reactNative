@@ -46,7 +46,10 @@ export default class NowPlaying extends Component {
             toValue: 0,
             tension: 60
           }).start();
-        } else if (gestureState.moveY < 120 && gestureState.dy < 0) {
+        } else if (
+          gestureState.moveY < screenHeight / 2 &&
+          gestureState.dy < 0
+        ) {
           //.......................when Pan is at top(zero) and try to move beyond.
           Animated.spring(this.animation.y, {
             toValue: 0,
