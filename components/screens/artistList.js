@@ -8,6 +8,8 @@ import {
   View
 } from "react-native";
 
+import { customColor } from "../../customColor";
+
 import ArtistGridView from "./artistGridView";
 import ModalList from "./modalListArtist";
 
@@ -68,7 +70,6 @@ export default class ArtistList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="grey" barStyle="light-content" />
         <Modal
           transparent={false}
           visible={this.state.visible}
@@ -85,10 +86,6 @@ export default class ArtistList extends Component {
         <FlatList
           numColumns={2}
           style={styles.container}
-          // onScroll={event => {
-          //   let scrollY = event.nativeEvent.contentOffset.y;
-          //   this.props.onScroll(scrollY);
-          // }}
           ListFooterComponent={
             <View style={{ height: 0, marginBottom: "18%" }} />
           }
@@ -111,6 +108,6 @@ export default class ArtistList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: customColor.primaryColor
   }
 });

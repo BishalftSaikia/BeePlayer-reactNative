@@ -11,6 +11,7 @@ import {
   Animated,
   Dimensions
 } from "react-native";
+import { customColor } from "../../customColor";
 
 import Icon from "react-native-vector-icons/Feather";
 
@@ -203,8 +204,8 @@ export default class NowPlaying extends Component {
                 right: 0,
                 left: 0,
                 zIndex: 10,
-                backgroundColor: "white",
-                height: screenHeight + 120
+                backgroundColor: customColor.secondaryColor,
+                height: screenHeight + 90
               }
             ]}
           >
@@ -214,9 +215,7 @@ export default class NowPlaying extends Component {
                 height: animatedHeaderHeight,
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "center",
-                borderTopWidth: 1,
-                borderColor: "#f7cac9"
+                justifyContent: "center"
               }}
             >
               <TouchableOpacity
@@ -235,7 +234,7 @@ export default class NowPlaying extends Component {
                     marginLeft: animatedImageMargin
                   }}
                 >
-                  <Image
+                  <Animated.Image
                     style={{ flex: 1, width: null, height: null }}
                     source={
                       item.cover
@@ -250,7 +249,8 @@ export default class NowPlaying extends Component {
                     opacity: animatedSongTitleOpacity,
                     fontSize: 12,
                     paddingLeft: 10,
-                    flexWrap: "wrap"
+                    flexWrap: "wrap",
+                    color: customColor.textPrimaryColor
                   }}
                   numberOfLines={1}
                 >
@@ -274,14 +274,18 @@ export default class NowPlaying extends Component {
                   <Icon
                     name={this.state.pause ? "play" : "pause"}
                     size={18}
-                    color="#000"
+                    color={customColor.textPrimaryColor}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => this.nextPrevSong("next")}
                   style={{ flex: 1, height: 80, justifyContent: "center" }}
                 >
-                  <Icon name="skip-forward" size={18} color="#000" />
+                  <Icon
+                    name="skip-forward"
+                    size={18}
+                    color={customColor.textPrimaryColor}
+                  />
                 </TouchableOpacity>
               </Animated.View>
             </Animated.View>
@@ -305,7 +309,8 @@ export default class NowPlaying extends Component {
                     fontWeight: "bold",
                     fontSize: 18,
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    color: customColor.textPrimaryColor
                   }}
                   numberOfLines={1}
                 >
@@ -313,12 +318,12 @@ export default class NowPlaying extends Component {
                 </Text>
                 <Text
                   style={{
-                    color: "pink",
                     marginTop: 10,
                     fontSize: 12,
                     fontFamily: "sans-serif-light",
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    color: customColor.textSecondaryColor
                   }}
                   numberOfLines={1}
                 >
@@ -336,7 +341,11 @@ export default class NowPlaying extends Component {
                   onPress={() => this.nextPrevSong("prev")}
                   style={styles.bodyButton}
                 >
-                  <Icon name="skip-back" size={18} color="#000" />
+                  <Icon
+                    name="skip-back"
+                    size={18}
+                    color={customColor.textPrimaryColor}
+                  />
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={this.resumePause}
@@ -345,14 +354,18 @@ export default class NowPlaying extends Component {
                   <Icon
                     name={this.state.pause ? "play" : "pause"}
                     size={22}
-                    color="#000"
+                    color={customColor.textPrimaryColor}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => this.nextPrevSong("next")}
                   style={styles.bodyButton}
                 >
-                  <Icon name="skip-forward" size={18} color="#000" />
+                  <Icon
+                    name="skip-forward"
+                    size={18}
+                    color={customColor.textPrimaryColor}
+                  />
                 </TouchableOpacity>
               </View>
             </Animated.View>

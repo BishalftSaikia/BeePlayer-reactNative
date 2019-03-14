@@ -10,6 +10,8 @@ import {
   Animated
 } from "react-native";
 
+import { customColor } from "../../customColor";
+
 export default class MediaList extends Component {
   state = {
     songsArray: [],
@@ -45,29 +47,24 @@ export default class MediaList extends Component {
       ? minutes + 1 + ":00"
       : minutes + ":" + (seconds < 10 ? "00" : seconds);
   }
+  lineSeperator() {
+    return (
+      <View
+        style={{
+          height: 2,
+          backgroundColor: customColor.lineSeperator,
+          width: "100%"
+        }}
+      />
+    );
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="rgb(202,204,206)" barStyle="dark-content" />
+        <StatusBar barStyle="dark-content" />
         <FlatList
-          // onScroll={event => {
-          //   let scrollY = event.nativeEvent.contentOffset.y;
-          //   this.props.onScroll(scrollY);
-          // }}
-          // onScrollEndDrag={() => {
-          //   this.props.onScroll(this.state.currentOffset);
-          // }}
-          // // onMomentumScrollBegin={() => {
-          // //   this.props.onScroll(this.state.direction);
-          // // }}
-          ItemSeparatorComponent={() => {
-            return (
-              <View
-                style={{ height: 1, backgroundColor: "#f7cac9", width: "100%" }}
-              />
-            );
-          }}
+          ItemSeparatorComponent={this.lineSeperator}
           ListFooterComponent={
             <View style={{ height: 0, marginBottom: "18%" }} />
           }
@@ -78,15 +75,6 @@ export default class MediaList extends Component {
               onPress={() => this.playMedia(index)}
               style={styles.itemCard}
             >
-              {/* <Image
-                source={
-                  item.cover
-                    ? { uri: item.cover }
-                    : require("../../iconPNG/noCover.jpg")
-                }
-                style={styles.listItemAvatar}
-              /> */}
-
               <View style={styles.titleCard}>
                 <Text style={styles.titleText} numberOfLines={1}>
                   {item.title ? item.title : item.fileName}
@@ -99,7 +87,7 @@ export default class MediaList extends Component {
                 <Text
                   style={{
                     fontSize: 14,
-                    color: "black",
+                    color: customColor.textPrimaryColor,
                     fontFamily: "sans-serif-light",
                     paddingBottom: 8
                   }}
@@ -119,7 +107,7 @@ export default class MediaList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: customColor.primaryColor
   },
 
   flatList: {
@@ -155,13 +143,13 @@ const styles = StyleSheet.create({
 
   titleText: {
     fontSize: 15,
-    color: "black"
+    color: customColor.textPrimaryColor
   },
 
   authorText: {
     paddingTop: 2,
     fontSize: 13,
     fontFamily: "sans-serif-light",
-    color: "black"
+    color: customColor.textSecondaryColor
   }
 });

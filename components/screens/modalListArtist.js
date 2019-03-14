@@ -11,6 +11,8 @@ import {
 } from "react-native";
 const screenHeight = Dimensions.get("window").height;
 
+import { customColor } from "../../customColor";
+
 export default class ModalList extends Component {
   state = {
     data: this.props.modalData
@@ -26,7 +28,7 @@ export default class ModalList extends Component {
         style={{
           height: 1,
           width: "100%",
-          backgroundColor: "#f7cac9"
+          backgroundColor: customColor.textSecondaryColor
         }}
       />
     );
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: customColor.primaryColor,
     paddingTop: 15,
     paddingLeft: 8,
     paddingRight: 8
@@ -112,13 +114,13 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
     height: 30,
     borderLeftWidth: 1,
-    borderLeftColor: "grey",
+    borderLeftColor: customColor.textSecondaryColor,
     alignItems: "center"
   },
   titleText: {
     paddingLeft: 14,
     fontSize: 14,
     fontFamily: "sans-serif-light",
-    color: "black"
+    color: customColor.textPrimaryColor
   }
 });

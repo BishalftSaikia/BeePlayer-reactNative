@@ -4,6 +4,7 @@ import { Router, Scene, Actions } from "react-native-router-flux";
 import MediaList from "./components/screens/mediaList";
 import ArtistList from "./components/screens/artistList";
 import AlbumList from "./components/screens/albumList";
+import { customColor } from "./customColor";
 
 export default class RootRouter extends Component {
   componentWillMount() {
@@ -33,18 +34,15 @@ export default class RootRouter extends Component {
             tabs
             tabBarPosition="top"
             tabBarStyle={{
-              backgroundColor: "white",
-              height: "8%"
-              // borderTopColor: "#ffc1cc",
-              // borderTopWidth: 1
+              backgroundColor: customColor.primaryColor,
+              height: "8%",
+              borderBottomColor: customColor.textSecondaryColor,
+              borderBottomWidth: 1
             }}
             hideNavBar
-            // navigationBarStyle={{
-            //   backgroundColor: "rgb(202,204,206)"
-            // }}
-            inactiveTintColor="grey"
-            activeTintColor="black"
-            indicatorStyle={{ backgroundColor: "#f7cac9" }}
+            inactiveTintColor={customColor.textSecondaryColor}
+            activeTintColor={customColor.activeColor}
+            indicatorStyle={{ backgroundColor: customColor.activeColor }}
           >
             <Scene
               key="mediaList"

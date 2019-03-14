@@ -15,9 +15,10 @@ import {
 import NowPlaying from "./components/screens/nowPlaying";
 import RootRouter from "./router";
 import MusicFiles from "react-native-get-music-files";
+import { customColor } from "./customColor";
 
 const screenHeight = Dimensions.get("window").height;
-const navHeight = 0.1 * screenHeight;
+const navHeight = 0.09 * screenHeight;
 
 export default class MainComponent extends Component {
   state = {
@@ -103,29 +104,6 @@ export default class MainComponent extends Component {
     this.refs.nowChild.playSong(index, songlist);
   };
 
-  /*offset = 0;
-  tabChanged = false;
-  direction = "";
-  onScroll = y => {
-    if (y > this.offset) {
-      //.......................................DownwardMovement
-      this.direction = "down";
-      this.offset = y;
-      this.animation.setValue(y);
-    } else if (y < this.offset && this.direction === "down") {
-      //.......................................upwardMovement
-      this.tabChanged = true;
-      this.offset = y;
-    } else if (y < this.offset || this.tabChanged) {
-      //.......................................upwardMovement
-      this.offset = y;
-      Animated.spring(this.animation, {
-        toValue: 0,
-        tension: 1
-      });
-    }
-  };*/
-
   render() {
     navBarHeight = this.animation.interpolate({
       inputRange: [0, 100],
@@ -141,11 +119,10 @@ export default class MainComponent extends Component {
       if (this.state.songsArray.length) {
         return (
           <View style={{ flex: 1 }}>
-            <View //................Make it animated View OnScroll
+            <View
               style={{
-                backgroundColor: "rgb(202,204,206)",
-                height: navHeight, //.........Make it navBarHeight
-                //opacity: navBarOpacity,
+                backgroundColor: customColor.secondaryColor,
+                height: navHeight,
                 width: "100%",
                 flexDirection: "column"
               }}
@@ -158,7 +135,11 @@ export default class MainComponent extends Component {
                   paddingLeft: 20
                 }}
               >
-                <Text style={{ fontSize: 20, color: "black" }}>Home</Text>
+                <Text
+                  style={{ fontSize: 20, color: customColor.textPrimaryColor }}
+                >
+                  Home
+                </Text>
               </View>
             </View>
             <RootRouter //.........................................................RootRouter

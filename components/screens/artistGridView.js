@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Image } from "react-native";
 const api_key = "7a3b962cc11e7d3e248140f9bd86ca82";
 
+import { customColor } from "../../customColor";
+
 export default class ArtistGridView extends Component {
   state = {
     uri: "",
@@ -87,20 +89,20 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     height: 170,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: customColor.primaryColor
   },
   artistView: {
     width: 140,
     height: 140,
     borderRadius: 90,
-    backgroundColor: "rgba(49,51,53,0.8)",
     justifyContent: "center",
     alignItems: "center"
   },
   artistText: {
     paddingTop: 8,
     fontSize: 14,
-    color: "black",
+    color: customColor.textPrimaryColor,
     padding: 2
   }
 });

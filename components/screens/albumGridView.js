@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, Image, TouchableOpacity, Text, View } from "react-native";
 
-export default class GridView extends Component {
+import { customColor } from "../../customColor";
+
+export default class AlbumGridView extends Component {
   render() {
     var widthItem = (this.props.itemWidth - 12) / 2;
     var item = this.props.item;
@@ -23,15 +25,20 @@ export default class GridView extends Component {
           style={{
             flex: 1,
             paddingLeft: 10,
-            paddingTop: 8,
-            backgroundColor: "white"
+            paddingTop: 8
           }}
         >
-          <Text style={{ color: "black" }} numberOfLines={1}>
+          <Text
+            style={{ color: customColor.textPrimaryColor }}
+            numberOfLines={1}
+          >
             {item[0].album ? item[0].album : "Unknown Album"}
           </Text>
           <Text
-            style={{ color: "black", fontFamily: "sans-serif-light" }}
+            style={{
+              color: customColor.textSecondaryColor,
+              fontFamily: "sans-serif-light"
+            }}
             numberOfLines={1}
           >
             {item.length} Songs
@@ -44,7 +51,7 @@ export default class GridView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: customColor.primaryColor,
     borderRadius: 10,
     marginLeft: 3,
     marginRight: 3,

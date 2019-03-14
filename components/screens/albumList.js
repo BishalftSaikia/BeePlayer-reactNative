@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  Modal,
-  View,
-  StatusBar
-} from "react-native";
+import { StyleSheet, FlatList, Dimensions, Modal, View } from "react-native";
 
-import GridView from "./gridView";
+import { customColor } from "../../customColor";
+
+import AlbumGridView from "./albumGridView";
 import ModalList from "./modalListAlbum";
 
 const itemWidth = Dimensions.get("window").width;
@@ -66,7 +61,6 @@ export default class AlbumList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="grey" barStyle="light-content" />
         <Modal
           transparent={false}
           visible={this.state.visible}
@@ -82,16 +76,12 @@ export default class AlbumList extends Component {
         <FlatList
           numColumns={2}
           style={styles.container}
-          // onScroll={event => {
-          //   let scrollY = event.nativeEvent.contentOffset.y;
-          //   this.props.onScroll(scrollY);
-          // }}
           ListFooterComponent={
             <View style={{ height: 0, marginBottom: "18%" }} />
           }
           data={this.state.songsArray}
           renderItem={({ item, index }) => (
-            <GridView
+            <AlbumGridView
               itemWidth={itemWidth}
               item={item}
               index={index}
@@ -108,6 +98,6 @@ export default class AlbumList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: customColor.primaryColor
   }
 });
