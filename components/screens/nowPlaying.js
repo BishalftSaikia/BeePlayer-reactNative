@@ -45,7 +45,7 @@ export default class NowPlaying extends Component {
           //......................when Pan is at bottom and try to move beyond.
           Animated.spring(this.animation.y, {
             toValue: 0,
-            tension: 60
+            tension: 40
           }).start();
         } else if (
           gestureState.moveY < screenHeight / 2 &&
@@ -54,19 +54,19 @@ export default class NowPlaying extends Component {
           //.......................when Pan is at top(zero) and try to move beyond.
           Animated.spring(this.animation.y, {
             toValue: 0,
-            tension: 60
+            tension: 40
           }).start();
         } else if (gestureState.dy < 0) {
           //.......................Pan Moving Upward
           Animated.spring(this.animation.y, {
             toValue: -screenHeight + 90,
-            tension: 60
+            tension: 40
           }).start();
         } else if (gestureState.dy > 0) {
           //.......................Pan moving Downward
           Animated.spring(this.animation.y, {
             toValue: screenHeight - 90,
-            tension: 60
+            tension: 40
           }).start();
         }
       }
@@ -74,6 +74,10 @@ export default class NowPlaying extends Component {
   }
 
   async componentDidMount() {
+    this.setState({
+      queueList: this.props.queueList,
+      songIndex: this.props.index
+    });
     let wasPlaying = JSON.parse(await AsyncStorage.getItem("playing"));
     if (item && wasPlaying) {
       song = new mediaPlayer(item.path, "", error => {
@@ -88,6 +92,7 @@ export default class NowPlaying extends Component {
 
   componentWillUnmount() {
     AsyncStorage.setItem("playing", JSON.stringify(this.state.pause));
+    AsyncStorage.setItem("currentSong", JSON.stringify(this.state.songIndex));
   }
 
   playSong = (index, songList) => {
@@ -165,17 +170,28 @@ export default class NowPlaying extends Component {
 
     animatedHeaderHeight = this.animation.y.interpolate({
       inputRange: [0, screenHeight - 90],
-      outputRange: [screenHeight / 2, 80],
+      outputRange: [screenHeight / 2, 65],
+      extrapolate: "clamp"
+    });
+    animatedHeaderPaddingTop = this.animation.y.interpolate({
+      inputRange: [0, screenHeight - 90],
+      outputRange: [10, 0],
+      extrapolate: "clamp"
+    });
+    animatedBorderRadius = this.animation.y.interpolate({
+      inputRange: [0, screenHeight - 90],
+      outputRange: [10, 0],
       extrapolate: "clamp"
     });
     animatedImageHeight = this.animation.y.interpolate({
       inputRange: [0, screenHeight - 90],
-      outputRange: [200, 40],
+      outputRange: [270, 50],
       extrapolate: "clamp"
     });
     animatedImageMargin = this.animation.y.interpolate({
       inputRange: [0, screenHeight - 90],
-      outputRange: [screenWidth / 2 - 100, 10]
+      outputRange: [screenWidth / 2 - 85, 8],
+      extrapolate: "clamp"
     });
     animatedSongTitleOpacity = this.animation.y.interpolate({
       inputRange: [0, screenHeight - 150, screenHeight - 90],
@@ -203,9 +219,10 @@ export default class NowPlaying extends Component {
                 position: "absolute",
                 right: 0,
                 left: 0,
-                zIndex: 10,
                 backgroundColor: customColor.secondaryColor,
-                height: screenHeight + 90
+                height: screenHeight + 90,
+                borderTopWidth: 1,
+                borderTopColor: "black"
               }
             ]}
           >
@@ -214,8 +231,7 @@ export default class NowPlaying extends Component {
               style={{
                 height: animatedHeaderHeight,
                 flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
+                paddingTop: animatedHeaderPaddingTop
               }}
             >
               <TouchableOpacity
@@ -225,37 +241,53 @@ export default class NowPlaying extends Component {
                   alignItems: "center",
                   justifyContent: "center"
                 }}
-                onPress={() => console.log("open")}
+                onPress={() => {
+                  Animated.spring(this.animation.y, {
+                    toValue: 0,
+                    tension: 60
+                  }).start();
+                }}
               >
-                <Animated.View
+                <Animated.Image
                   style={{
                     height: animatedImageHeight,
                     width: animatedImageHeight,
-                    marginLeft: animatedImageMargin
+                    marginLeft: animatedImageMargin,
+                    borderRadius: animatedBorderRadius
                   }}
-                >
-                  <Animated.Image
-                    style={{ flex: 1, width: null, height: null }}
-                    source={
-                      item.cover
-                        ? { uri: item.cover }
-                        : require("../../iconPNG/noAlbumArt.jpg")
-                    }
-                  />
-                </Animated.View>
-                <Animated.Text
-                  style={{
-                    flex: 1,
-                    opacity: animatedSongTitleOpacity,
-                    fontSize: 12,
-                    paddingLeft: 10,
-                    flexWrap: "wrap",
-                    color: customColor.textPrimaryColor
-                  }}
-                  numberOfLines={1}
-                >
-                  {item.title ? item.title : item.fileName.split(".mp3")[0]}
-                </Animated.Text>
+                  source={
+                    item.cover
+                      ? { uri: item.cover }
+                      : require("../../iconPNG/noAlbumArt.jpg")
+                  }
+                />
+
+                <View style={{ flex: 1, flexWrap: "wrap" }}>
+                  <Animated.Text
+                    style={{
+                      opacity: animatedSongTitleOpacity,
+                      fontSize: 12,
+                      paddingLeft: 10,
+                      flexWrap: "wrap",
+                      color: customColor.textPrimaryColor
+                    }}
+                    numberOfLines={1}
+                  >
+                    {item.title ? item.title : item.fileName.split(".mp3")[0]}
+                  </Animated.Text>
+                  <Animated.Text
+                    style={{
+                      opacity: animatedSongTitleOpacity,
+                      fontSize: 12,
+                      paddingLeft: 10,
+
+                      color: customColor.textSecondaryColor
+                    }}
+                    numberOfLines={1}
+                  >
+                    {item.author ? item.author : "unknown"}
+                  </Animated.Text>
+                </View>
               </TouchableOpacity>
               <Animated.View
                 style={{
@@ -304,29 +336,10 @@ export default class NowPlaying extends Component {
                   justifyContent: "center"
                 }}
               >
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: 18,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: customColor.textPrimaryColor
-                  }}
-                  numberOfLines={1}
-                >
+                <Text style={styles.titleText} numberOfLines={1}>
                   {item.title ? item.title : item.fileName.split(".mp3")[0]}
                 </Text>
-                <Text
-                  style={{
-                    marginTop: 10,
-                    fontSize: 12,
-                    fontFamily: "sans-serif-light",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: customColor.textSecondaryColor
-                  }}
-                  numberOfLines={1}
-                >
+                <Text style={styles.authorText} numberOfLines={1}>
                   {item.author ? item.author : "Unknown"}
                 </Text>
               </View>
@@ -383,5 +396,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  titleText: {
+    fontWeight: "bold",
+    fontSize: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    color: customColor.textPrimaryColor
+  },
+  authorText: {
+    marginTop: 10,
+    fontSize: 12,
+    fontFamily: "sans-serif-light",
+    alignItems: "center",
+    justifyContent: "center",
+    color: customColor.textSecondaryColor
   }
 });

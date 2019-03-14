@@ -1371,7 +1371,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   _reactNative.AppRegistry.registerComponent(_app.name, function () {
     return _mainComponent.default;
   });
-},0,[1,2,560,773],"index.js");
+},0,[1,2,560,774],"index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -88926,7 +88926,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
                 _context.t5 = _context.sent;
                 queueList = _context.t4.parse.call(_context.t4, _context.t5);
 
-                if (songsArray) {
+                if (songsArray.length) {
                   _this.setState({
                     loading: true,
                     songsArray: songsArray,
@@ -88982,10 +88982,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       };
 
       _this.newSongPlay = function (index, songlist) {
-        _reactNative.AsyncStorage.setItem("queueList", JSON.stringify(songlist));
-
-        _reactNative.AsyncStorage.setItem("currentSong", JSON.stringify(index));
-
         _this.refs.nowChild.playSong(index, songlist);
       };
 
@@ -89015,6 +89011,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "componentWillUnmount",
       value: function componentWillUnmount() {
         _reactNative.AsyncStorage.setItem("songsArray", JSON.stringify(this.state.songsArray));
+
+        _reactNative.AsyncStorage.setItem("queueList", JSON.stringify(this.state.queueList));
       }
     }, {
       key: "render",
@@ -89040,18 +89038,20 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 121
+                lineNumber: 120
               }
             }, _react.default.createElement(_reactNative.View, {
               style: {
-                backgroundColor: _customColor.customColor.secondaryColor,
+                backgroundColor: _customColor.customColor.primaryColor,
                 height: navHeight,
                 width: "100%",
-                flexDirection: "column"
+                flexDirection: "column",
+                borderBottomColor: _customColor.customColor.secondaryColor,
+                borderBottomWidth: 1
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 122
+                lineNumber: 121
               }
             }, _react.default.createElement(_reactNative.View, {
               style: {
@@ -89062,7 +89062,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 130
+                lineNumber: 131
               }
             }, _react.default.createElement(_reactNative.Text, {
               style: {
@@ -89071,15 +89071,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 138
+                lineNumber: 139
               }
-            }, "Home"))), _react.default.createElement(_router.default, {
-              onScroll: this.onScroll,
+            }, "BeePlayer"))), _react.default.createElement(_router.default, {
               playTrack: this.newSongPlay,
               songsArray: this.state.songsArray,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 145
+                lineNumber: 149
               }
             }), _react.default.createElement(_nowPlaying.default, {
               ref: "nowChild",
@@ -89087,7 +89086,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               queueList: this.state.queueList,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 150
+                lineNumber: 153
               }
             }));
           } else {
@@ -89095,7 +89094,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               style: styles.container,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 159
+                lineNumber: 162
               }
             }, _react.default.createElement(_reactNative.Text, {
               style: {
@@ -89103,7 +89102,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 160
+                lineNumber: 163
               }
             }, "No Media Files Found"), _react.default.createElement(_reactNative.TouchableOpacity, {
               onPress: function onPress() {
@@ -89112,7 +89111,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               style: styles.scan,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 161
+                lineNumber: 164
               }
             }, _react.default.createElement(_reactNative.Text, {
               style: {
@@ -89121,7 +89120,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 167
+                lineNumber: 170
               }
             }, "Scan")));
           }
@@ -89153,7 +89152,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: "center"
     }
   });
-},560,[1,561,15,101,19,20,27,30,33,47,200,2,562,615,772,775],"mainComponent.js");
+},560,[1,561,15,101,19,20,27,30,33,47,200,2,562,616,773,563],"mainComponent.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _interopRequireWildcard(obj) {
     if (obj && obj.__esModule) {
@@ -89367,22 +89366,22 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             if (gestureState.moveY > screenHeight - 90) {
               _reactNative.Animated.spring(_this2.animation.y, {
                 toValue: 0,
-                tension: 60
+                tension: 40
               }).start();
             } else if (gestureState.moveY < screenHeight / 2 && gestureState.dy < 0) {
               _reactNative.Animated.spring(_this2.animation.y, {
                 toValue: 0,
-                tension: 60
+                tension: 40
               }).start();
             } else if (gestureState.dy < 0) {
               _reactNative.Animated.spring(_this2.animation.y, {
                 toValue: -screenHeight + 90,
-                tension: 60
+                tension: 40
               }).start();
             } else if (gestureState.dy > 0) {
               _reactNative.Animated.spring(_this2.animation.y, {
                 toValue: screenHeight - 90,
-                tension: 60
+                tension: 40
               }).start();
             }
           }
@@ -89396,11 +89395,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                this.setState({
+                  queueList: this.props.queueList,
+                  songIndex: this.props.index
+                });
                 _context.t0 = JSON;
-                _context.next = 3;
+                _context.next = 4;
                 return _regenerator.default.awrap(_reactNative.AsyncStorage.getItem("playing"));
 
-              case 3:
+              case 4:
                 _context.t1 = _context.sent;
                 wasPlaying = _context.t0.parse.call(_context.t0, _context.t1);
 
@@ -89416,7 +89419,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
                   });
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -89427,6 +89430,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "componentWillUnmount",
       value: function componentWillUnmount() {
         _reactNative.AsyncStorage.setItem("playing", JSON.stringify(this.state.pause));
+
+        _reactNative.AsyncStorage.setItem("currentSong", JSON.stringify(this.state.songIndex));
       }
     }, {
       key: "render",
@@ -89438,17 +89443,28 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         };
         animatedHeaderHeight = this.animation.y.interpolate({
           inputRange: [0, screenHeight - 90],
-          outputRange: [screenHeight / 2, 80],
+          outputRange: [screenHeight / 2, 65],
+          extrapolate: "clamp"
+        });
+        animatedHeaderPaddingTop = this.animation.y.interpolate({
+          inputRange: [0, screenHeight - 90],
+          outputRange: [10, 0],
+          extrapolate: "clamp"
+        });
+        animatedBorderRadius = this.animation.y.interpolate({
+          inputRange: [0, screenHeight - 90],
+          outputRange: [10, 0],
           extrapolate: "clamp"
         });
         animatedImageHeight = this.animation.y.interpolate({
           inputRange: [0, screenHeight - 90],
-          outputRange: [200, 40],
+          outputRange: [270, 50],
           extrapolate: "clamp"
         });
         animatedImageMargin = this.animation.y.interpolate({
           inputRange: [0, screenHeight - 90],
-          outputRange: [screenWidth / 2 - 100, 10]
+          outputRange: [screenWidth / 2 - 85, 8],
+          extrapolate: "clamp"
         });
         animatedSongTitleOpacity = this.animation.y.interpolate({
           inputRange: [0, screenHeight - 150, screenHeight - 90],
@@ -89470,31 +89486,31 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           return _react.default.createElement(_react.default.Fragment, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 198
+              lineNumber: 214
             }
           }, _react.default.createElement(_reactNative.Animated.View, {
             style: [animatedHeight, {
               position: "absolute",
               right: 0,
               left: 0,
-              zIndex: 10,
               backgroundColor: _customColor.customColor.secondaryColor,
-              height: screenHeight + 90
+              height: screenHeight + 90,
+              borderTopWidth: 1,
+              borderTopColor: "black"
             }],
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 199
+              lineNumber: 215
             }
           }, _react.default.createElement(_reactNative.Animated.View, (0, _extends2.default)({}, this.PanResponder.panHandlers, {
             style: {
               height: animatedHeaderHeight,
               flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center"
+              paddingTop: animatedHeaderPaddingTop
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 212
+              lineNumber: 229
             }
           }), _react.default.createElement(_reactNative.TouchableOpacity, {
             style: {
@@ -89504,38 +89520,40 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               justifyContent: "center"
             },
             onPress: function onPress() {
-              return console.log("open");
+              _reactNative.Animated.spring(_this3.animation.y, {
+                toValue: 0,
+                tension: 60
+              }).start();
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 221
-            }
-          }, _react.default.createElement(_reactNative.Animated.View, {
-            style: {
-              height: animatedImageHeight,
-              width: animatedImageHeight,
-              marginLeft: animatedImageMargin
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 230
+              lineNumber: 237
             }
           }, _react.default.createElement(_reactNative.Animated.Image, {
             style: {
-              flex: 1,
-              width: null,
-              height: null
+              height: animatedImageHeight,
+              width: animatedImageHeight,
+              marginLeft: animatedImageMargin,
+              borderRadius: animatedBorderRadius
             },
             source: item.cover ? {
               uri: item.cover
             } : _$$_REQUIRE(_dependencyMap[15], "../../iconPNG/noAlbumArt.jpg"),
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 237
+              lineNumber: 251
             }
-          })), _react.default.createElement(_reactNative.Animated.Text, {
+          }), _react.default.createElement(_reactNative.View, {
             style: {
               flex: 1,
+              flexWrap: "wrap"
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 265
+            }
+          }, _react.default.createElement(_reactNative.Animated.Text, {
+            style: {
               opacity: animatedSongTitleOpacity,
               fontSize: 12,
               paddingLeft: 10,
@@ -89545,9 +89563,21 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             numberOfLines: 1,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 246
+              lineNumber: 266
             }
-          }, item.title ? item.title : item.fileName.split(".mp3")[0])), _react.default.createElement(_reactNative.Animated.View, {
+          }, item.title ? item.title : item.fileName.split(".mp3")[0]), _react.default.createElement(_reactNative.Animated.Text, {
+            style: {
+              opacity: animatedSongTitleOpacity,
+              fontSize: 12,
+              paddingLeft: 10,
+              color: _customColor.customColor.textSecondaryColor
+            },
+            numberOfLines: 1,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 278
+            }
+          }, item.author ? item.author : "unknown"))), _react.default.createElement(_reactNative.Animated.View, {
             style: {
               opacity: animatedButtonOpacity,
               flex: 1,
@@ -89558,7 +89588,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 260
+              lineNumber: 292
             }
           }, _react.default.createElement(_reactNative.TouchableOpacity, {
             onPress: this.resumePause,
@@ -89569,7 +89599,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 270
+              lineNumber: 302
             }
           }, _react.default.createElement(_Feather.default, {
             name: this.state.pause ? "play" : "pause",
@@ -89577,7 +89607,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             color: _customColor.customColor.textPrimaryColor,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 274
+              lineNumber: 306
             }
           })), _react.default.createElement(_reactNative.TouchableOpacity, {
             onPress: function onPress() {
@@ -89590,7 +89620,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 280
+              lineNumber: 312
             }
           }, _react.default.createElement(_Feather.default, {
             name: "skip-forward",
@@ -89598,7 +89628,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             color: _customColor.customColor.textPrimaryColor,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 284
+              lineNumber: 316
             }
           })))), _react.default.createElement(_reactNative.Animated.View, {
             style: {
@@ -89609,7 +89639,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 292
+              lineNumber: 324
             }
           }, _react.default.createElement(_reactNative.View, {
             style: {
@@ -89619,34 +89649,21 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 300
+              lineNumber: 332
             }
           }, _react.default.createElement(_reactNative.Text, {
-            style: {
-              fontWeight: "bold",
-              fontSize: 18,
-              alignItems: "center",
-              justifyContent: "center",
-              color: _customColor.customColor.textPrimaryColor
-            },
+            style: styles.titleText,
             numberOfLines: 1,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 307
+              lineNumber: 339
             }
           }, item.title ? item.title : item.fileName.split(".mp3")[0]), _react.default.createElement(_reactNative.Text, {
-            style: {
-              marginTop: 10,
-              fontSize: 12,
-              fontFamily: "sans-serif-light",
-              alignItems: "center",
-              justifyContent: "center",
-              color: _customColor.customColor.textSecondaryColor
-            },
+            style: styles.authorText,
             numberOfLines: 1,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 319
+              lineNumber: 342
             }
           }, item.author ? item.author : "Unknown")), _react.default.createElement(_reactNative.View, {
             style: {
@@ -89656,7 +89673,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 333
+              lineNumber: 346
             }
           }, _react.default.createElement(_reactNative.TouchableOpacity, {
             onPress: function onPress() {
@@ -89665,7 +89682,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             style: styles.bodyButton,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 340
+              lineNumber: 353
             }
           }, _react.default.createElement(_Feather.default, {
             name: "skip-back",
@@ -89673,14 +89690,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             color: _customColor.customColor.textPrimaryColor,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 344
+              lineNumber: 357
             }
           })), _react.default.createElement(_reactNative.TouchableOpacity, {
             onPress: this.resumePause,
             style: styles.bodyButton,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 350
+              lineNumber: 363
             }
           }, _react.default.createElement(_Feather.default, {
             name: this.state.pause ? "play" : "pause",
@@ -89688,7 +89705,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             color: _customColor.customColor.textPrimaryColor,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 354
+              lineNumber: 367
             }
           })), _react.default.createElement(_reactNative.TouchableOpacity, {
             onPress: function onPress() {
@@ -89697,7 +89714,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             style: styles.bodyButton,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 360
+              lineNumber: 373
             }
           }, _react.default.createElement(_Feather.default, {
             name: "skip-forward",
@@ -89705,7 +89722,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             color: _customColor.customColor.textPrimaryColor,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 364
+              lineNumber: 377
             }
           }))))));
         } else {
@@ -89724,9 +89741,48 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       flex: 1,
       justifyContent: "center",
       alignItems: "center"
+    },
+    titleText: {
+      fontWeight: "bold",
+      fontSize: 18,
+      alignItems: "center",
+      justifyContent: "center",
+      color: _customColor.customColor.textPrimaryColor
+    },
+    authorText: {
+      marginTop: 10,
+      fontSize: 12,
+      fontFamily: "sans-serif-light",
+      alignItems: "center",
+      justifyContent: "center",
+      color: _customColor.customColor.textSecondaryColor
     }
   });
-},562,[1,561,8,101,19,20,27,30,33,47,200,2,775,563,613,614],"components/screens/nowPlaying.js");
+},562,[1,561,8,101,19,20,27,30,33,47,200,2,563,564,614,615],"components/screens/nowPlaying.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.customColor = void 0;
+  var customColor1 = {
+    primaryColor: "rgb(28,28,28)",
+    secondaryColor: "rgb(48,49,48)",
+    textPrimaryColor: "rgb(222,222,222)",
+    textSecondaryColor: "rgb(162,162,162)",
+    activeColor: "rgba(0,253,253,0.6)",
+    lineSeperator: "rgb(58,57,58)"
+  };
+  var customColor2 = {
+    primaryColor: "white",
+    secondaryColor: "grey",
+    textPrimaryColor: "black",
+    textSecondaryColor: "grey",
+    activeColor: "pink",
+    lineSeperator: "pink"
+  };
+  var customColor = customColor1;
+  exports.customColor = customColor;
+},563,[],"customColor.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -89752,7 +89808,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.ToolbarAndroid = ToolbarAndroid;
   var getImageSource = iconSet.getImageSource;
   exports.getImageSource = getImageSource;
-},563,[1,564,612],"node_modules/react-native-vector-icons/Feather.js");
+},564,[1,565,613],"node_modules/react-native-vector-icons/Feather.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -90004,7 +90060,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     Icon.getFontFamily = getFontFamily;
     return Icon;
   }
-},564,[1,561,15,8,6,19,20,27,30,33,47,200,62,565,566,567,609,611],"node_modules/react-native-vector-icons/lib/create-icon-set.js");
+},565,[1,561,15,8,6,19,20,27,30,33,47,200,62,566,567,568,610,612],"node_modules/react-native-vector-icons/lib/create-icon-set.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -90021,7 +90077,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     });
   });
-},565,[2],"node_modules/react-native-vector-icons/lib/react-native.js");
+},566,[2],"node_modules/react-native-vector-icons/lib/react-native.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -90041,7 +90097,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw new Error('RNVectorIconsManager not available, did you add the library to your project and link with libRNVectorIcons.a? Try running `react-native link react-native-vector-icons` and recompiling.');
     }
   }
-},566,[565],"node_modules/react-native-vector-icons/lib/ensure-native-module-available.js");
+},567,[566],"node_modules/react-native-vector-icons/lib/ensure-native-module-available.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -90193,7 +90249,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       size: 20
     }, _temp));
   }
-},567,[1,561,8,6,19,20,27,30,33,47,200,568,569,605,62,565],"node_modules/react-native-vector-icons/lib/icon-button.js");
+},568,[1,561,8,6,19,20,27,30,33,47,200,569,570,606,62,566],"node_modules/react-native-vector-icons/lib/icon-button.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseGetTag = _$$_REQUIRE(_dependencyMap[0], "./_baseGetTag"),
       isArray = _$$_REQUIRE(_dependencyMap[1], "./isArray"),
@@ -90206,7 +90262,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = isString;
-},568,[227,269,278],"node_modules/lodash/isString.js");
+},569,[227,269,278],"node_modules/lodash/isString.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayMap = _$$_REQUIRE(_dependencyMap[0], "./_arrayMap"),
       baseClone = _$$_REQUIRE(_dependencyMap[1], "./_baseClone"),
@@ -90248,7 +90304,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     return result;
   });
   module.exports = omit;
-},569,[311,570,597,303,330,601,603,583],"node_modules/lodash/omit.js");
+},570,[311,571,598,303,330,602,604,584],"node_modules/lodash/omit.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var Stack = _$$_REQUIRE(_dependencyMap[0], "./_Stack"),
       arrayEach = _$$_REQUIRE(_dependencyMap[1], "./_arrayEach"),
@@ -90391,7 +90447,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseClone;
-},570,[209,571,327,572,573,577,578,579,580,266,583,292,584,585,591,269,279,593,233,595,273],"node_modules/lodash/_baseClone.js");
+},571,[209,572,327,573,574,578,579,580,581,266,584,292,585,586,592,269,279,594,233,596,273],"node_modules/lodash/_baseClone.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function arrayEach(array, iteratee) {
     var index = -1,
@@ -90407,7 +90463,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = arrayEach;
-},571,[],"node_modules/lodash/_arrayEach.js");
+},572,[],"node_modules/lodash/_arrayEach.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var copyObject = _$$_REQUIRE(_dependencyMap[0], "./_copyObject"),
       keys = _$$_REQUIRE(_dependencyMap[1], "./keys");
@@ -90417,7 +90473,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseAssign;
-},572,[330,273],"node_modules/lodash/_baseAssign.js");
+},573,[330,273],"node_modules/lodash/_baseAssign.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var copyObject = _$$_REQUIRE(_dependencyMap[0], "./_copyObject"),
       keysIn = _$$_REQUIRE(_dependencyMap[1], "./keysIn");
@@ -90427,7 +90483,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseAssignIn;
-},573,[330,574],"node_modules/lodash/_baseAssignIn.js");
+},574,[330,575],"node_modules/lodash/_baseAssignIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayLikeKeys = _$$_REQUIRE(_dependencyMap[0], "./_arrayLikeKeys"),
       baseKeysIn = _$$_REQUIRE(_dependencyMap[1], "./_baseKeysIn"),
@@ -90438,7 +90494,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = keysIn;
-},574,[274,575,291],"node_modules/lodash/keysIn.js");
+},575,[274,576,291],"node_modules/lodash/keysIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var isObject = _$$_REQUIRE(_dependencyMap[0], "./isObject"),
       isPrototype = _$$_REQUIRE(_dependencyMap[1], "./_isPrototype"),
@@ -90465,7 +90521,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseKeysIn;
-},575,[233,288,576],"node_modules/lodash/_baseKeysIn.js");
+},576,[233,288,577],"node_modules/lodash/_baseKeysIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function nativeKeysIn(object) {
     var result = [];
@@ -90480,7 +90536,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = nativeKeysIn;
-},576,[],"node_modules/lodash/_nativeKeysIn.js");
+},577,[],"node_modules/lodash/_nativeKeysIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var root = _$$_REQUIRE(_dependencyMap[0], "./_root");
 
@@ -90502,7 +90558,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneBuffer;
-},577,[229],"node_modules/lodash/_cloneBuffer.js");
+},578,[229],"node_modules/lodash/_cloneBuffer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function copyArray(source, array) {
     var index = -1,
@@ -90517,7 +90573,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = copyArray;
-},578,[],"node_modules/lodash/_copyArray.js");
+},579,[],"node_modules/lodash/_copyArray.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var copyObject = _$$_REQUIRE(_dependencyMap[0], "./_copyObject"),
       getSymbols = _$$_REQUIRE(_dependencyMap[1], "./_getSymbols");
@@ -90527,7 +90583,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = copySymbols;
-},579,[330,270],"node_modules/lodash/_copySymbols.js");
+},580,[330,270],"node_modules/lodash/_copySymbols.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var copyObject = _$$_REQUIRE(_dependencyMap[0], "./_copyObject"),
       getSymbolsIn = _$$_REQUIRE(_dependencyMap[1], "./_getSymbolsIn");
@@ -90537,7 +90593,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = copySymbolsIn;
-},580,[330,581],"node_modules/lodash/_copySymbolsIn.js");
+},581,[330,582],"node_modules/lodash/_copySymbolsIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayPush = _$$_REQUIRE(_dependencyMap[0], "./_arrayPush"),
       getPrototype = _$$_REQUIRE(_dependencyMap[1], "./_getPrototype"),
@@ -90556,13 +90612,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     return result;
   };
   module.exports = getSymbolsIn;
-},581,[268,582,270,272],"node_modules/lodash/_getSymbolsIn.js");
+},582,[268,583,270,272],"node_modules/lodash/_getSymbolsIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var overArg = _$$_REQUIRE(_dependencyMap[0], "./_overArg");
 
   var getPrototype = overArg(Object.getPrototypeOf, Object);
   module.exports = getPrototype;
-},582,[290],"node_modules/lodash/_getPrototype.js");
+},583,[290],"node_modules/lodash/_getPrototype.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseGetAllKeys = _$$_REQUIRE(_dependencyMap[0], "./_baseGetAllKeys"),
       getSymbolsIn = _$$_REQUIRE(_dependencyMap[1], "./_getSymbolsIn"),
@@ -90573,7 +90629,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = getAllKeysIn;
-},583,[267,581,574],"node_modules/lodash/_getAllKeysIn.js");
+},584,[267,582,575],"node_modules/lodash/_getAllKeysIn.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var objectProto = Object.prototype;
   var hasOwnProperty = objectProto.hasOwnProperty;
@@ -90591,7 +90647,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = initCloneArray;
-},584,[],"node_modules/lodash/_initCloneArray.js");
+},585,[],"node_modules/lodash/_initCloneArray.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var cloneArrayBuffer = _$$_REQUIRE(_dependencyMap[0], "./_cloneArrayBuffer"),
       cloneDataView = _$$_REQUIRE(_dependencyMap[1], "./_cloneDataView"),
@@ -90663,7 +90719,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = initCloneByTag;
-},585,[586,587,588,589,590],"node_modules/lodash/_initCloneByTag.js");
+},586,[587,588,589,590,591],"node_modules/lodash/_initCloneByTag.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var Uint8Array = _$$_REQUIRE(_dependencyMap[0], "./_Uint8Array");
 
@@ -90674,7 +90730,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneArrayBuffer;
-},586,[262],"node_modules/lodash/_cloneArrayBuffer.js");
+},587,[262],"node_modules/lodash/_cloneArrayBuffer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var cloneArrayBuffer = _$$_REQUIRE(_dependencyMap[0], "./_cloneArrayBuffer");
 
@@ -90684,7 +90740,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneDataView;
-},587,[586],"node_modules/lodash/_cloneDataView.js");
+},588,[587],"node_modules/lodash/_cloneDataView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var reFlags = /\w*$/;
 
@@ -90695,7 +90751,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneRegExp;
-},588,[],"node_modules/lodash/_cloneRegExp.js");
+},589,[],"node_modules/lodash/_cloneRegExp.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var Symbol = _$$_REQUIRE(_dependencyMap[0], "./_Symbol");
 
@@ -90707,7 +90763,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneSymbol;
-},589,[228],"node_modules/lodash/_cloneSymbol.js");
+},590,[228],"node_modules/lodash/_cloneSymbol.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var cloneArrayBuffer = _$$_REQUIRE(_dependencyMap[0], "./_cloneArrayBuffer");
 
@@ -90717,7 +90773,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = cloneTypedArray;
-},590,[586],"node_modules/lodash/_cloneTypedArray.js");
+},591,[587],"node_modules/lodash/_cloneTypedArray.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseCreate = _$$_REQUIRE(_dependencyMap[0], "./_baseCreate"),
       getPrototype = _$$_REQUIRE(_dependencyMap[1], "./_getPrototype"),
@@ -90728,7 +90784,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = initCloneObject;
-},591,[592,582,288],"node_modules/lodash/_initCloneObject.js");
+},592,[593,583,288],"node_modules/lodash/_initCloneObject.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var isObject = _$$_REQUIRE(_dependencyMap[0], "./isObject");
 
@@ -90754,7 +90810,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = baseCreate;
-},592,[233],"node_modules/lodash/_baseCreate.js");
+},593,[233],"node_modules/lodash/_baseCreate.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseIsMap = _$$_REQUIRE(_dependencyMap[0], "./_baseIsMap"),
       baseUnary = _$$_REQUIRE(_dependencyMap[1], "./_baseUnary"),
@@ -90763,7 +90819,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var nodeIsMap = nodeUtil && nodeUtil.isMap;
   var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
   module.exports = isMap;
-},593,[594,285,286],"node_modules/lodash/isMap.js");
+},594,[595,285,286],"node_modules/lodash/isMap.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var getTag = _$$_REQUIRE(_dependencyMap[0], "./_getTag"),
       isObjectLike = _$$_REQUIRE(_dependencyMap[1], "./isObjectLike");
@@ -90775,7 +90831,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseIsMap;
-},594,[292,278],"node_modules/lodash/_baseIsMap.js");
+},595,[292,278],"node_modules/lodash/_baseIsMap.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseIsSet = _$$_REQUIRE(_dependencyMap[0], "./_baseIsSet"),
       baseUnary = _$$_REQUIRE(_dependencyMap[1], "./_baseUnary"),
@@ -90784,7 +90840,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var nodeIsSet = nodeUtil && nodeUtil.isSet;
   var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
   module.exports = isSet;
-},595,[596,285,286],"node_modules/lodash/isSet.js");
+},596,[597,285,286],"node_modules/lodash/isSet.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var getTag = _$$_REQUIRE(_dependencyMap[0], "./_getTag"),
       isObjectLike = _$$_REQUIRE(_dependencyMap[1], "./isObjectLike");
@@ -90796,7 +90852,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseIsSet;
-},596,[292,278],"node_modules/lodash/_baseIsSet.js");
+},597,[292,278],"node_modules/lodash/_baseIsSet.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var castPath = _$$_REQUIRE(_dependencyMap[0], "./_castPath"),
       last = _$$_REQUIRE(_dependencyMap[1], "./last"),
@@ -90810,7 +90866,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseUnset;
-},597,[303,598,599,312],"node_modules/lodash/_baseUnset.js");
+},598,[303,599,600,312],"node_modules/lodash/_baseUnset.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function last(array) {
     var length = array == null ? 0 : array.length;
@@ -90818,7 +90874,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = last;
-},598,[],"node_modules/lodash/last.js");
+},599,[],"node_modules/lodash/last.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseGet = _$$_REQUIRE(_dependencyMap[0], "./_baseGet"),
       baseSlice = _$$_REQUIRE(_dependencyMap[1], "./_baseSlice");
@@ -90828,7 +90884,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = parent;
-},599,[302,600],"node_modules/lodash/_parent.js");
+},600,[302,601],"node_modules/lodash/_parent.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function baseSlice(array, start, end) {
     var index = -1,
@@ -90856,7 +90912,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseSlice;
-},600,[],"node_modules/lodash/_baseSlice.js");
+},601,[],"node_modules/lodash/_baseSlice.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var isPlainObject = _$$_REQUIRE(_dependencyMap[0], "./isPlainObject");
 
@@ -90865,7 +90921,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = customOmitClone;
-},601,[602],"node_modules/lodash/_customOmitClone.js");
+},602,[603],"node_modules/lodash/_customOmitClone.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseGetTag = _$$_REQUIRE(_dependencyMap[0], "./_baseGetTag"),
       getPrototype = _$$_REQUIRE(_dependencyMap[1], "./_getPrototype"),
@@ -90894,7 +90950,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = isPlainObject;
-},602,[227,582,278],"node_modules/lodash/isPlainObject.js");
+},603,[227,583,278],"node_modules/lodash/isPlainObject.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var flatten = _$$_REQUIRE(_dependencyMap[0], "./flatten"),
       overRest = _$$_REQUIRE(_dependencyMap[1], "./_overRest"),
@@ -90905,7 +90961,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = flatRest;
-},603,[604,333,335],"node_modules/lodash/_flatRest.js");
+},604,[605,333,335],"node_modules/lodash/_flatRest.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseFlatten = _$$_REQUIRE(_dependencyMap[0], "./_baseFlatten");
 
@@ -90915,7 +90971,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = flatten;
-},604,[347],"node_modules/lodash/flatten.js");
+},605,[347],"node_modules/lodash/flatten.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var basePick = _$$_REQUIRE(_dependencyMap[0], "./_basePick"),
       flatRest = _$$_REQUIRE(_dependencyMap[1], "./_flatRest");
@@ -90924,7 +90980,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     return object == null ? {} : basePick(object, paths);
   });
   module.exports = pick;
-},605,[606,603],"node_modules/lodash/pick.js");
+},606,[607,604],"node_modules/lodash/pick.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var basePickBy = _$$_REQUIRE(_dependencyMap[0], "./_basePickBy"),
       hasIn = _$$_REQUIRE(_dependencyMap[1], "./hasIn");
@@ -90936,7 +90992,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = basePick;
-},606,[607,313],"node_modules/lodash/_basePick.js");
+},607,[608,313],"node_modules/lodash/_basePick.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseGet = _$$_REQUIRE(_dependencyMap[0], "./_baseGet"),
       baseSet = _$$_REQUIRE(_dependencyMap[1], "./_baseSet"),
@@ -90960,7 +91016,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = basePickBy;
-},607,[302,608,303],"node_modules/lodash/_basePickBy.js");
+},608,[302,609,303],"node_modules/lodash/_basePickBy.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var assignValue = _$$_REQUIRE(_dependencyMap[0], "./_assignValue"),
       castPath = _$$_REQUIRE(_dependencyMap[1], "./_castPath"),
@@ -91000,7 +91056,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = baseSet;
-},608,[327,303,281,233,312],"node_modules/lodash/_baseSet.js");
+},609,[327,303,281,233,312],"node_modules/lodash/_baseSet.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -91216,7 +91272,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       iconSize: 30
     }, _temp));
   }
-},609,[1,561,8,101,19,20,27,30,33,47,200,610,605,62,565],"node_modules/react-native-vector-icons/lib/tab-bar-item-ios.js");
+},610,[1,561,8,101,19,20,27,30,33,47,200,611,606,62,566],"node_modules/react-native-vector-icons/lib/tab-bar-item-ios.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var baseIsEqual = _$$_REQUIRE(_dependencyMap[0], "./_baseIsEqual");
 
@@ -91225,7 +91281,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = isEqual;
-},610,[253],"node_modules/lodash/isEqual.js");
+},611,[253],"node_modules/lodash/isEqual.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -91546,7 +91602,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       iconSize: 24
     }, _temp));
   }
-},611,[1,561,8,44,101,19,20,27,30,33,47,200,610,605,62,565],"node_modules/react-native-vector-icons/lib/toolbar-android.js");
+},612,[1,561,8,44,101,19,20,27,30,33,47,200,611,606,62,566],"node_modules/react-native-vector-icons/lib/toolbar-android.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "activity": 59648,
@@ -91816,7 +91872,7 @@ __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   "zoom-in": 59912,
   "zoom-out": 59913
 };
-},612,[],"node_modules/react-native-vector-icons/glyphmaps/Feather.json");
+},613,[],"node_modules/react-native-vector-icons/glyphmaps/Feather.json");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -92137,7 +92193,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Sound.LIBRARY = RNSound.NSLibraryDirectory;
   Sound.CACHES = RNSound.NSCachesDirectory;
   module.exports = Sound;
-},613,[2,194],"node_modules/react-native-sound/sound.js");
+},614,[2,194],"node_modules/react-native-sound/sound.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -92149,7 +92205,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "noAlbumArt",
     "type": "jpg"
   });
-},614,[195],"iconPNG/noAlbumArt.jpg");
+},615,[195],"iconPNG/noAlbumArt.jpg");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92264,17 +92320,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           }
         }, _react.default.createElement(_reactNativeRouterFlux.Scene, {
           key: "tab",
-          onScroll: this.props.onScroll,
           playTrack: this.props.playTrack,
           songsArray: this.props.songsArray,
           title: "Home",
           tabs: true,
           tabBarPosition: "top",
           tabBarStyle: {
-            backgroundColor: _customColor.customColor.primaryColor,
-            height: "8%",
-            borderBottomColor: _customColor.customColor.textSecondaryColor,
-            borderBottomWidth: 1
+            backgroundColor: _customColor.customColor.secondaryColor,
+            height: "7%"
           },
           hideNavBar: true,
           inactiveTintColor: _customColor.customColor.textSecondaryColor,
@@ -92293,7 +92346,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           hideNavBar: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 47
+            lineNumber: 44
           }
         }), _react.default.createElement(_reactNativeRouterFlux.Scene, {
           key: "albumList",
@@ -92302,7 +92355,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           hideNavBar: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 53
+            lineNumber: 50
           }
         }), _react.default.createElement(_reactNativeRouterFlux.Scene, {
           key: "artistList",
@@ -92311,7 +92364,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           hideNavBar: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 59
+            lineNumber: 56
           }
         }))));
       }
@@ -92321,7 +92374,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = RootRouter;
   exports.default = _default2;
-},615,[1,561,19,20,27,30,33,47,200,2,616,762,763,768,775],"router.js");
+},616,[1,561,19,20,27,30,33,47,200,2,617,763,764,769,563],"router.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92423,7 +92476,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Overlay = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "./Overlay"));
 
   var _pathParser = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[13], "./pathParser"));
-},616,[1,561,617,618,740,748,619,749,750,761,751,752,754,758],"node_modules/react-native-router-flux/src/index.js");
+},617,[1,561,618,619,741,749,620,750,751,762,752,753,755,759],"node_modules/react-native-router-flux/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92453,7 +92506,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.BLUR = BLUR;
   var ANDROID_BACK = 'REACT_NATIVE_ROUTER_FLUX_ANDROID_BACK';
   exports.ANDROID_BACK = ANDROID_BACK;
-},617,[],"node_modules/react-native-router-flux/src/ActionConst.js");
+},618,[],"node_modules/react-native-router-flux/src/ActionConst.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92729,7 +92782,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default2 = Router;
   exports.default = _default2;
-},618,[1,8,44,6,9,19,20,27,30,33,47,200,2,62,619,758],"node_modules/react-native-router-flux/src/Router.js");
+},619,[1,8,44,6,9,19,20,27,30,33,47,200,2,62,620,759],"node_modules/react-native-router-flux/src/Router.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -94017,7 +94070,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = new NavigationStore();
 
   exports.default = _default2;
-},619,[1,561,15,101,19,20,27,30,29,33,8,44,6,45,47,200,2,620,691,62,740,617,743,744,746,747,748,742,749,750,751,752,753,754,755,756,757],"node_modules/react-native-router-flux/src/navigationStore.js");
+},620,[1,561,15,101,19,20,27,30,29,33,8,44,6,45,47,200,2,621,692,62,741,618,744,745,747,748,749,743,750,751,752,753,754,755,756,757,758],"node_modules/react-native-router-flux/src/navigationStore.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get createNavigationContainer() {
@@ -94233,7 +94286,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},620,[621,637,624,638,639,640,646,671,681,691,707,623,677,728,730,673,675,674,678,732,631,733,680,735,679,736,737,738,739],"node_modules/react-navigation/src/react-navigation.js");
+},621,[622,638,625,639,640,641,647,672,682,692,708,624,678,729,731,674,676,675,679,733,632,734,681,736,680,737,738,739,740],"node_modules/react-navigation/src/react-navigation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -94712,7 +94765,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     NavigationContainer = _wrapComponent("NavigationContainer")(NavigationContainer);
     return (0, _reactLifecyclesCompat.polyfill)(NavigationContainer);
   }
-},621,[1,8,101,19,27,30,20,33,6,47,200,2,622,623,624,626,630,631],"node_modules/react-navigation/src/createNavigationContainer.js");
+},622,[1,8,101,19,27,30,20,33,6,47,200,2,623,624,625,627,631,632],"node_modules/react-navigation/src/createNavigationContainer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94817,7 +94870,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   exports.polyfill = polyfill;
-},622,[],"node_modules/react-lifecycles-compat/react-lifecycles-compat.cjs.js");
+},623,[],"node_modules/react-lifecycles-compat/react-lifecycles-compat.cjs.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -94890,7 +94943,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     setParams: setParams
   };
   exports.default = _default;
-},623,[],"node_modules/react-navigation/src/NavigationActions.js");
+},624,[],"node_modules/react-navigation/src/NavigationActions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -94953,7 +95006,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     });
     return navigation;
   }
-},624,[1,44,625,627],"node_modules/react-navigation/src/getNavigation.js");
+},625,[1,44,626,628],"node_modules/react-navigation/src/getNavigation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -95006,7 +95059,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = getNavigationActionCreators;
   exports.default = _default;
-},625,[1,623,626],"node_modules/react-navigation/src/routers/getNavigationActionCreators.js");
+},626,[1,624,627],"node_modules/react-navigation/src/routers/getNavigationActionCreators.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var validateFormat = function validateFormat(format) {};
 
@@ -95041,7 +95094,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = invariant;
-},626,[],"node_modules/react-navigation/src/utils/invariant.js");
+},627,[],"node_modules/react-navigation/src/utils/invariant.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -95151,7 +95204,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = _getChildNavigation;
   exports.default = _default;
-},627,[1,44,628,629,625,626],"node_modules/react-navigation/src/getChildNavigation.js");
+},628,[1,44,629,630,626,627],"node_modules/react-navigation/src/getChildNavigation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -95297,7 +95350,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     };
   }
-},628,[1,44],"node_modules/react-navigation/src/getChildEventSubscriber.js");
+},629,[1,44],"node_modules/react-navigation/src/getChildEventSubscriber.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -95312,7 +95365,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var Component = router.getComponentForRouteName(routeName);
     return Component.router;
   }
-},629,[],"node_modules/react-navigation/src/getChildRouter.js");
+},630,[],"node_modules/react-navigation/src/getChildRouter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -95322,7 +95375,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function docsUrl(path) {
     return "https://reactnavigation.org/docs/" + path;
   }
-},630,[],"node_modules/react-navigation/src/utils/docsUrl.js");
+},631,[],"node_modules/react-navigation/src/utils/docsUrl.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireWildcard");
 
@@ -95590,7 +95643,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     createPathParser: createPathParser
   };
   exports.default = _default;
-},631,[561,1,9,44,632,623,626,634],"node_modules/react-navigation/src/routers/pathUtils.js");
+},632,[561,1,9,44,633,624,627,635],"node_modules/react-navigation/src/routers/pathUtils.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var isarray = _$$_REQUIRE(_dependencyMap[0], "isarray");
 
@@ -95881,12 +95934,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return stringToRegexp(path, keys, options);
   }
-},632,[633],"node_modules/react-navigation/node_modules/path-to-regexp/index.js");
+},633,[634],"node_modules/react-navigation/node_modules/path-to-regexp/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = Array.isArray || function (arr) {
     return Object.prototype.toString.call(arr) == '[object Array]';
   };
-},633,[],"node_modules/react-navigation/node_modules/isarray/index.js");
+},634,[],"node_modules/react-navigation/node_modules/isarray/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96140,7 +96193,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       query: parse(extract(input), options)
     };
   };
-},634,[9,8,635,636],"node_modules/query-string/index.js");
+},635,[9,8,636,637],"node_modules/query-string/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96149,7 +96202,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return "%" + x.charCodeAt(0).toString(16).toUpperCase();
     });
   };
-},635,[],"node_modules/strict-uri-encode/index.js");
+},636,[],"node_modules/strict-uri-encode/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96231,7 +96284,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return customDecodeURIComponent(encodedURI);
     }
   };
-},636,[],"node_modules/decode-uri-component/index.js");
+},637,[],"node_modules/decode-uri-component/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -96356,7 +96409,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = StateUtils;
   exports.default = _default;
-},637,[1,44,626],"node_modules/react-navigation/src/StateUtils.js");
+},638,[1,44,627],"node_modules/react-navigation/src/StateUtils.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -96489,7 +96542,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = createNavigator;
   exports.default = _default2;
-},638,[1,8,19,20,27,30,33,47,200,622],"node_modules/react-navigation/src/navigators/createNavigator.js");
+},639,[1,8,19,20,27,30,33,47,200,623],"node_modules/react-navigation/src/navigators/createNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -96616,7 +96669,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default2;
-},639,[1,8,19,20,27,30,33,47,200,2],"node_modules/react-navigation/src/navigators/createKeyboardAwareNavigator.js");
+},640,[1,8,19,20,27,30,33,47,200,2],"node_modules/react-navigation/src/navigators/createKeyboardAwareNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -96637,7 +96690,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     NavigationConsumer: NavigationConsumer
   };
   exports.default = _default;
-},640,[1,641],"node_modules/react-navigation/src/views/NavigationContext.js");
+},641,[1,642],"node_modules/react-navigation/src/views/NavigationContext.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96659,7 +96712,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.default = _react2.default.createContext || _implementation2.default;
   module.exports = exports['default'];
-},641,[47,642],"node_modules/create-react-context/lib/index.js");
+},642,[47,643],"node_modules/create-react-context/lib/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96882,7 +96935,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.default = createReactContext;
   module.exports = exports['default'];
-},642,[47,62,643,644],"node_modules/create-react-context/lib/implementation.js");
+},643,[47,62,644,645],"node_modules/create-react-context/lib/implementation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96891,7 +96944,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   module.exports = function () {
     return global[key] = (global[key] || 0) + 1;
   };
-},643,[],"node_modules/gud/index.js");
+},644,[],"node_modules/gud/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96939,7 +96992,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = warning;
-},644,[645],"node_modules/create-react-context/node_modules/fbjs/lib/warning.js");
+},645,[646],"node_modules/create-react-context/node_modules/fbjs/lib/warning.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   "use strict";
 
@@ -96965,7 +97018,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   module.exports = emptyFunction;
-},645,[],"node_modules/create-react-context/node_modules/fbjs/lib/emptyFunction.js");
+},646,[],"node_modules/create-react-context/node_modules/fbjs/lib/emptyFunction.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get createStackNavigator() {
@@ -97025,7 +97078,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},646,[647,648,656,658,657,662,649,653,650,666,665,654,668,669],"node_modules/react-navigation-stack/dist/index.js");
+},647,[648,649,657,659,658,663,650,654,651,667,666,655,669,670],"node_modules/react-navigation-stack/dist/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -97046,7 +97099,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = createContainedStackNavigator;
   exports.default = _default;
-},647,[1,620,648],"node_modules/react-navigation-stack/dist/navigators/createContainedStackNavigator.js");
+},648,[1,621,649],"node_modules/react-navigation-stack/dist/navigators/createContainedStackNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -97088,7 +97141,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = createStackNavigator;
   exports.default = _default;
-},648,[1,620,649],"node_modules/react-navigation-stack/dist/navigators/createStackNavigator.js");
+},649,[1,621,650],"node_modules/react-navigation-stack/dist/navigators/createStackNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -97246,7 +97299,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   StackView = _wrapComponent("StackView")(StackView);
   var _default2 = StackView;
   exports.default = _default2;
-},649,[1,8,44,19,20,27,30,33,47,200,2,620,650,668,665],"node_modules/react-navigation-stack/dist/views/StackView/StackView.js");
+},650,[1,8,44,19,20,27,30,33,47,200,2,621,651,669,666],"node_modules/react-navigation-stack/dist/views/StackView/StackView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -97869,7 +97922,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactNavigation.withOrientation)(StackViewLayout);
 
   exports.default = _default2;
-},650,[1,6,8,44,19,20,27,30,33,47,200,651,2,620,652,653,656,665,667],"node_modules/react-navigation-stack/dist/views/StackView/StackViewLayout.js");
+},651,[1,6,8,44,19,20,27,30,33,47,200,652,2,621,653,654,657,666,668],"node_modules/react-navigation-stack/dist/views/StackView/StackViewLayout.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -97887,7 +97940,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return value;
   }
-},651,[],"node_modules/react-navigation-stack/dist/utils/clamp.js");
+},652,[],"node_modules/react-navigation-stack/dist/utils/clamp.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -98082,7 +98135,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.ScreenContainer = ScreenContainer;
   exports.ScreenContainer = ScreenContainer = _wrapComponent("ScreenContainer")(ScreenContainer);
-},652,[1,8,6,19,20,27,30,33,47,200,2,109],"node_modules/react-native-screens/src/screens.native.js");
+},653,[1,8,6,19,20,27,30,33,47,200,2,109],"node_modules/react-native-screens/src/screens.native.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -98213,7 +98266,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _createPointerEventsContainer.default)(Card);
 
   exports.default = _default2;
-},653,[1,44,8,19,20,27,30,33,47,200,2,652,654],"node_modules/react-navigation-stack/dist/views/StackView/StackViewCard.js");
+},654,[1,44,8,19,20,27,30,33,47,200,2,653,655],"node_modules/react-navigation-stack/dist/views/StackView/StackViewCard.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -98368,7 +98421,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }]);
     return AnimatedValueSubscription;
   }();
-},654,[1,8,19,20,27,30,33,47,200,655],"node_modules/react-navigation-stack/dist/views/StackView/createPointerEventsContainer.js");
+},655,[1,8,19,20,27,30,33,47,200,656],"node_modules/react-navigation-stack/dist/views/StackView/createPointerEventsContainer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -98400,7 +98453,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw error;
     }
   }
-},655,[],"node_modules/react-navigation-stack/dist/utils/invariant.js");
+},656,[],"node_modules/react-navigation-stack/dist/utils/invariant.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -99145,7 +99198,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactNavigation.withOrientation)(Header);
 
   exports.default = _default2;
-},656,[1,6,8,45,44,19,20,27,30,33,47,200,2,620,657,658,661,662,664],"node_modules/react-navigation-stack/dist/views/Header/Header.js");
+},657,[1,6,8,45,44,19,20,27,30,33,47,200,2,621,658,659,662,663,665],"node_modules/react-navigation-stack/dist/views/Header/Header.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -99192,7 +99245,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = HeaderTitle;
   exports.default = _default;
-},657,[1,8,6,47,2],"node_modules/react-navigation-stack/dist/views/Header/HeaderTitle.js");
+},658,[1,8,6,47,2],"node_modules/react-navigation-stack/dist/views/Header/HeaderTitle.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -99436,7 +99489,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = HeaderBackButton;
   exports.default = _default2;
-},658,[1,8,19,20,27,30,33,47,200,2,659,660],"node_modules/react-navigation-stack/dist/views/Header/HeaderBackButton.js");
+},659,[1,8,19,20,27,30,33,47,200,2,660,661],"node_modules/react-navigation-stack/dist/views/Header/HeaderBackButton.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -99537,7 +99590,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = TouchableItem;
   exports.default = _default2;
-},659,[1,8,6,19,20,27,30,33,47,200,2],"node_modules/react-navigation-stack/dist/views/TouchableItem.js");
+},660,[1,8,6,19,20,27,30,33,47,200,2],"node_modules/react-navigation-stack/dist/views/TouchableItem.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -99549,7 +99602,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "back-icon",
     "type": "png"
   });
-},660,[195],"node_modules/react-navigation-stack/dist/views/assets/back-icon.png");
+},661,[195],"node_modules/react-navigation-stack/dist/views/assets/back-icon.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -99764,7 +99817,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = ModularHeaderBackButton;
   exports.default = _default2;
-},661,[1,8,19,20,27,30,33,47,200,2,659,660],"node_modules/react-navigation-stack/dist/views/Header/ModularHeaderBackButton.js");
+},662,[1,8,19,20,27,30,33,47,200,2,660,661],"node_modules/react-navigation-stack/dist/views/Header/ModularHeaderBackButton.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100003,7 +100056,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     forBackgroundWithTranslation: forBackgroundWithTranslation
   };
   exports.default = _default;
-},662,[1,2,663],"node_modules/react-navigation-stack/dist/views/Header/HeaderStyleInterpolator.js");
+},663,[1,2,664],"node_modules/react-navigation-stack/dist/views/Header/HeaderStyleInterpolator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -100055,7 +100108,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = getSceneIndicesForInterpolationInputRange;
   exports.default = _default;
-},663,[],"node_modules/react-navigation-stack/dist/utils/getSceneIndicesForInterpolationInputRange.js");
+},664,[],"node_modules/react-navigation-stack/dist/utils/getSceneIndicesForInterpolationInputRange.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -100067,7 +100120,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "back-icon-mask",
     "type": "png"
   });
-},664,[195],"node_modules/react-navigation-stack/dist/views/assets/back-icon-mask.png");
+},665,[195],"node_modules/react-navigation-stack/dist/views/assets/back-icon-mask.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100167,7 +100220,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     FadeOutToBottomAndroid: FadeOutToBottomAndroid
   };
   exports.default = _default;
-},665,[1,44,2,666,667],"node_modules/react-navigation-stack/dist/views/StackView/StackViewTransitionConfigs.js");
+},666,[1,44,2,667,668],"node_modules/react-navigation-stack/dist/views/StackView/StackViewTransitionConfigs.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100343,7 +100396,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     forFade: forFade
   };
   exports.default = _default;
-},666,[1,2,663],"node_modules/react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator.js");
+},667,[1,2,664],"node_modules/react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -100366,7 +100419,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.supportsImprovedSpringAnimation = supportsImprovedSpringAnimation;
-},667,[2],"node_modules/react-navigation-stack/dist/utils/ReactNativeFeatures.js");
+},668,[2],"node_modules/react-navigation-stack/dist/utils/ReactNativeFeatures.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100727,7 +100780,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = Transitioner;
   exports.default = _default2;
-},668,[1,101,44,19,20,27,30,33,47,200,2,655,669],"node_modules/react-navigation-stack/dist/views/Transitioner.js");
+},669,[1,101,44,19,20,27,30,33,47,200,2,656,670],"node_modules/react-navigation-stack/dist/views/Transitioner.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100903,7 +100956,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return scenes;
   }
-},669,[1,44,655,670],"node_modules/react-navigation-stack/dist/views/ScenesReducer.js");
+},670,[1,44,656,671],"node_modules/react-navigation-stack/dist/views/ScenesReducer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -100946,7 +100999,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = shallowEqual;
   exports.default = _default;
-},670,[],"node_modules/react-navigation-stack/dist/utils/shallowEqual.js");
+},671,[],"node_modules/react-navigation-stack/dist/utils/shallowEqual.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100967,7 +101020,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = SwitchNavigator;
   exports.default = _default;
-},671,[1,621,672],"node_modules/react-navigation/src/navigators/createContainedSwitchNavigator.js");
+},672,[1,622,673],"node_modules/react-navigation/src/navigators/createContainedSwitchNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -100991,7 +101044,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = createSwitchNavigator;
   exports.default = _default;
-},672,[1,638,673,679],"node_modules/react-navigation/src/navigators/createSwitchNavigator.js");
+},673,[1,639,674,680],"node_modules/react-navigation/src/navigators/createSwitchNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101299,7 +101352,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},673,[1,15,44,626,674,675,623,677,678,631],"node_modules/react-navigation/src/routers/SwitchRouter.js");
+},674,[1,15,44,627,675,676,624,678,679,632],"node_modules/react-navigation/src/routers/SwitchRouter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101333,7 +101386,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return routeConfig;
   }
-},674,[1,63,626],"node_modules/react-navigation/src/routers/getScreenForRouteName.js");
+},675,[1,63,627],"node_modules/react-navigation/src/routers/getScreenForRouteName.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101386,7 +101439,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},675,[1,44,626,674,676],"node_modules/react-navigation/src/routers/createConfigGetter.js");
+},676,[1,44,627,675,677],"node_modules/react-navigation/src/routers/createConfigGetter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101423,7 +101476,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},676,[1,15],"node_modules/react-navigation/src/routers/validateScreenOptions.js");
+},677,[1,15],"node_modules/react-navigation/src/routers/validateScreenOptions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101492,7 +101545,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     completeTransition: completeTransition
   };
   exports.default = _default;
-},677,[1,44],"node_modules/react-navigation/src/routers/StackActions.js");
+},678,[1,44],"node_modules/react-navigation/src/routers/StackActions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101532,7 +101585,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = validateRouteConfigMap;
   exports.default = _default;
-},678,[1,63,626],"node_modules/react-navigation/src/routers/validateRouteConfigMap.js");
+},679,[1,63,627],"node_modules/react-navigation/src/routers/validateRouteConfigMap.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101608,7 +101661,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = SwitchView;
   exports.default = _default2;
-},679,[1,19,20,27,30,33,47,200,680],"node_modules/react-navigation/src/views/SwitchView/SwitchView.js");
+},680,[1,19,20,27,30,33,47,200,681],"node_modules/react-navigation/src/views/SwitchView/SwitchView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101689,7 +101742,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = SceneView;
   exports.default = _default2;
-},680,[1,19,20,27,30,33,47,200,640],"node_modules/react-navigation/src/views/SceneView.js");
+},681,[1,19,20,27,30,33,47,200,641],"node_modules/react-navigation/src/views/SceneView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get createDrawerNavigator() {
@@ -101717,7 +101770,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},681,[682,683,684,689,687,685],"node_modules/react-navigation-drawer/dist/index.js");
+},682,[683,684,685,690,688,686],"node_modules/react-navigation-drawer/dist/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101814,7 +101867,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = DrawerNavigator;
   exports.default = _default;
-},682,[1,6,44,8,47,2,620,683,685,689],"node_modules/react-navigation-drawer/dist/navigators/createDrawerNavigator.js");
+},683,[1,6,44,8,47,2,621,684,686,690],"node_modules/react-navigation-drawer/dist/navigators/createDrawerNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101944,7 +101997,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},683,[1,44,620,684],"node_modules/react-navigation-drawer/dist/routers/DrawerRouter.js");
+},684,[1,44,621,685],"node_modules/react-navigation-drawer/dist/routers/DrawerRouter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -101990,7 +102043,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     toggleDrawer: toggleDrawer
   };
   exports.default = _default;
-},684,[1,44],"node_modules/react-navigation-drawer/dist/routers/DrawerActions.js");
+},685,[1,44],"node_modules/react-navigation-drawer/dist/routers/DrawerActions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102186,7 +102239,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = DrawerView;
   exports.default = _default2;
-},685,[1,8,19,20,27,30,33,47,200,2,686,620,687,684],"node_modules/react-navigation-drawer/dist/views/DrawerView.js");
+},686,[1,8,19,20,27,30,33,47,200,2,687,621,688,685],"node_modules/react-navigation-drawer/dist/views/DrawerView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -102195,7 +102248,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[0], "react-native");
 
   exports.default = _reactNative.DrawerLayoutAndroid;
-},686,[2],"node_modules/react-native-drawer-layout-polyfill/dist/index.android.js");
+},687,[2],"node_modules/react-native-drawer-layout-polyfill/dist/index.android.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102381,7 +102434,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       flex: 1
     }
   });
-},687,[1,8,19,20,27,30,33,47,200,2,620,688],"node_modules/react-navigation-drawer/dist/views/DrawerSidebar.js");
+},688,[1,8,19,20,27,30,33,47,200,2,621,689],"node_modules/react-navigation-drawer/dist/views/DrawerSidebar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -102413,7 +102466,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw error;
     }
   }
-},688,[],"node_modules/react-navigation-drawer/dist/utils/invariant.js");
+},689,[],"node_modules/react-navigation-drawer/dist/utils/invariant.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102549,7 +102602,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = DrawerNavigatorItems;
   exports.default = _default;
-},689,[1,45,47,2,620,690],"node_modules/react-navigation-drawer/dist/views/DrawerNavigatorItems.js");
+},690,[1,45,47,2,621,691],"node_modules/react-navigation-drawer/dist/views/DrawerNavigatorItems.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102650,7 +102703,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = TouchableItem;
   exports.default = _default2;
-},690,[1,8,6,19,20,27,30,33,47,200,2],"node_modules/react-navigation-drawer/dist/views/TouchableItem.js");
+},691,[1,8,6,19,20,27,30,33,47,200,2],"node_modules/react-navigation-drawer/dist/views/TouchableItem.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102668,7 +102721,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     TabBarBottom: _TabBarBottom.default,
     TabBarTop: _TabBarTop.default
   };
-},691,[1,692,693,706,704],"node_modules/react-navigation-deprecated-tab-navigator/src/index.js");
+},692,[1,693,694,707,705],"node_modules/react-navigation-deprecated-tab-navigator/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -102722,7 +102775,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = createTabNavigator;
   exports.default = _default;
-},692,[1,44,47,2,620,693,704,706],"node_modules/react-navigation-deprecated-tab-navigator/src/createTabNavigator.js");
+},693,[1,44,47,2,621,694,705,707],"node_modules/react-navigation-deprecated-tab-navigator/src/createTabNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -103008,7 +103061,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       flex: 1
     }
   });
-},693,[1,8,19,20,27,30,33,47,200,2,694,620],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabView.js");
+},694,[1,8,19,20,27,30,33,47,200,2,695,621],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get TabViewAnimated() {
@@ -103040,7 +103093,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},694,[695,699,698,697,700,701,703],"node_modules/react-native-tab-view/src/index.js");
+},695,[696,700,699,698,701,702,704],"node_modules/react-native-tab-view/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -103325,7 +103378,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       flex: 1
     }
   });
-},695,[1,561,8,6,44,19,20,27,30,33,47,200,62,2,696,697,698,699],"node_modules/react-native-tab-view/src/TabViewAnimated.js");
+},696,[1,561,8,6,44,19,20,27,30,33,47,200,62,2,697,698,699,700],"node_modules/react-native-tab-view/src/TabViewAnimated.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -103386,7 +103439,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     children: _propTypes.default.node.isRequired
   };
   exports.PagerRendererPropType = PagerRendererPropType;
-},696,[1,62,2],"node_modules/react-native-tab-view/src/TabViewPropTypes.js");
+},697,[1,62,2],"node_modules/react-native-tab-view/src/TabViewPropTypes.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -103595,7 +103648,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       overflow: 'hidden'
     }
   });
-},697,[1,561,19,20,27,30,33,47,200,2,696],"node_modules/react-native-tab-view/src/TabViewPagerAndroid.js");
+},698,[1,561,19,20,27,30,33,47,200,2,697],"node_modules/react-native-tab-view/src/TabViewPagerAndroid.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -103819,7 +103872,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       overflow: 'hidden'
     }
   });
-},698,[1,561,19,20,27,30,33,47,200,2,696],"node_modules/react-native-tab-view/src/TabViewPagerScroll.js");
+},699,[1,561,19,20,27,30,33,47,200,2,697],"node_modules/react-native-tab-view/src/TabViewPagerScroll.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -104090,7 +104143,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: 'stretch'
     }
   });
-},699,[1,561,8,44,6,19,20,27,30,33,47,200,62,2,696],"node_modules/react-native-tab-view/src/TabViewPagerPan.js");
+},700,[1,561,8,44,6,19,20,27,30,33,47,200,62,2,697],"node_modules/react-native-tab-view/src/TabViewPagerPan.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -104340,7 +104393,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: 'stretch'
     }
   });
-},700,[1,561,44,6,19,20,27,30,33,47,200,62,2,696],"node_modules/react-native-tab-view/src/TabViewPagerExperimental.js");
+},701,[1,561,44,6,19,20,27,30,33,47,200,62,2,697],"node_modules/react-native-tab-view/src/TabViewPagerExperimental.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -104911,7 +104964,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       height: 2
     }
   });
-},701,[1,561,44,15,19,20,27,30,33,47,200,62,2,702,696],"node_modules/react-native-tab-view/src/TabBar.js");
+},702,[1,561,44,15,19,20,27,30,33,47,200,62,2,703,697],"node_modules/react-native-tab-view/src/TabBar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -105044,7 +105097,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = TouchableItem;
   exports.default = _default2;
-},702,[1,561,8,6,19,20,27,30,33,47,200,62,2],"node_modules/react-native-tab-view/src/TouchableItem.js");
+},703,[1,561,8,6,19,20,27,30,33,47,200,62,2],"node_modules/react-native-tab-view/src/TouchableItem.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -105125,7 +105178,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       });
     };
   }
-},703,[1,561,19,20,27,30,33,47,200],"node_modules/react-native-tab-view/src/SceneMap.js");
+},704,[1,561,19,20,27,30,33,47,200],"node_modules/react-native-tab-view/src/SceneMap.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -105348,7 +105401,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       backgroundColor: 'transparent'
     }
   });
-},704,[1,8,44,15,19,20,27,30,33,47,200,2,694,705],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarTop.js");
+},705,[1,8,44,15,19,20,27,30,33,47,200,2,695,706],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarTop.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -105483,7 +105536,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       minWidth: 30
     }
   });
-},705,[1,15,19,20,27,30,33,47,200,2],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarIcon.js");
+},706,[1,15,19,20,27,30,33,47,200,2],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarIcon.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -105899,7 +105952,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactNavigation.withOrientation)(TabBarBottom);
 
   exports.default = _default2;
-},706,[1,44,15,19,20,27,30,33,47,200,2,620,705],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarBottom.js");
+},707,[1,44,15,19,20,27,30,33,47,200,2,621,706],"node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarBottom.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = {
     get createBottomTabNavigator() {
@@ -105923,7 +105976,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},707,[708,715,710,727,709],"node_modules/react-navigation-tabs/src/index.js");
+},708,[709,716,711,728,710],"node_modules/react-navigation-tabs/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -106129,7 +106182,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _createTabNavigator.default)(TabNavigationView);
 
   exports.default = _default2;
-},708,[1,561,15,8,19,20,27,30,33,47,200,2,652,622,709,710,714],"node_modules/react-navigation-tabs/src/navigators/createBottomTabNavigator.js");
+},709,[1,561,15,8,19,20,27,30,33,47,200,2,653,623,710,711,715],"node_modules/react-navigation-tabs/src/navigators/createBottomTabNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -106397,7 +106450,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return (0, _reactNavigation.createNavigationContainer)(navigator);
     };
   }
-},709,[1,561,8,44,19,20,27,30,33,47,200,620],"node_modules/react-navigation-tabs/src/utils/createTabNavigator.js");
+},710,[1,561,8,44,19,20,27,30,33,47,200,621],"node_modules/react-navigation-tabs/src/utils/createTabNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -106762,7 +106815,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _withDimensions.default)(TabBarBottom);
 
   exports.default = _default2;
-},710,[1,8,6,19,20,27,30,33,47,200,2,620,711,712],"node_modules/react-navigation-tabs/src/views/BottomTabBar.js");
+},711,[1,8,6,19,20,27,30,33,47,200,2,621,712,713],"node_modules/react-navigation-tabs/src/views/BottomTabBar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -106879,7 +106932,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       minWidth: 25
     }
   });
-},711,[1,19,20,27,30,33,47,200,2],"node_modules/react-navigation-tabs/src/views/CrossFadeIcon.js");
+},712,[1,19,20,27,30,33,47,200,2],"node_modules/react-navigation-tabs/src/views/CrossFadeIcon.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -107011,7 +107064,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     EnhancedComponent = _wrapComponent("EnhancedComponent")(EnhancedComponent);
     return (0, _hoistNonReactStatics.default)(EnhancedComponent, WrappedComponent);
   }
-},712,[1,561,8,19,20,27,30,33,47,200,2,713],"node_modules/react-navigation-tabs/src/utils/withDimensions.js");
+},713,[1,561,8,19,20,27,30,33,47,200,2,714],"node_modules/react-navigation-tabs/src/utils/withDimensions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -107077,7 +107130,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = hoistNonReactStatics;
-},713,[],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+},714,[],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -107201,7 +107254,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       top: FAR_FAR_AWAY
     }
   });
-},714,[1,561,8,6,19,20,27,30,33,47,200,2,652],"node_modules/react-navigation-tabs/src/views/ResourceSavingScene.js");
+},715,[1,561,8,6,19,20,27,30,33,47,200,2,653],"node_modules/react-navigation-tabs/src/views/ResourceSavingScene.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -107539,7 +107592,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _createTabNavigator.default)(MaterialTabView);
 
   exports.default = _default2;
-},715,[1,561,6,15,8,19,20,27,30,33,47,200,2,622,716,709,727,714],"node_modules/react-navigation-tabs/src/navigators/createMaterialTopTabNavigator.js");
+},716,[1,561,6,15,8,19,20,27,30,33,47,200,2,623,717,710,728,715],"node_modules/react-navigation-tabs/src/navigators/createMaterialTopTabNavigator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -107610,7 +107663,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _PagerExperimental = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "./PagerExperimental"));
 
   var _SceneMap = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "./SceneMap"));
-},716,[1,717,718,721,724,723,722,725,726],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/index.js");
+},717,[1,718,719,722,725,724,723,726,727],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -107908,7 +107961,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       flex: 1
     }
   });
-},717,[1,561,8,6,44,19,20,27,30,33,47,200,62,2,718,721,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TabView.js");
+},718,[1,561,8,6,44,19,20,27,30,33,47,200,62,2,719,722,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TabView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -108528,7 +108581,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       height: 2
     }
   });
-},718,[1,561,44,15,19,20,27,30,33,47,200,62,2,719,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TabBar.js");
+},719,[1,561,44,15,19,20,27,30,33,47,200,62,2,720,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TabBar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -108644,7 +108697,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = TouchableItem;
   exports.default = _default2;
-},719,[1,561,8,6,19,20,27,30,33,47,200,62,2],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TouchableItem.js");
+},720,[1,561,8,6,19,20,27,30,33,47,200,62,2],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/TouchableItem.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -108704,7 +108757,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     children: _propTypes.default.node.isRequired
   };
   exports.PagerRendererPropType = PagerRendererPropType;
-},720,[1,62,2],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PropTypes.js");
+},721,[1,62,2],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PropTypes.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -108731,7 +108784,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = Pager;
   exports.default = _default;
-},721,[2,722,723,724],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerDefault.js");
+},722,[2,723,724,725],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerDefault.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -108944,7 +108997,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       overflow: 'hidden'
     }
   });
-},722,[1,561,19,20,27,30,33,47,200,2,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerAndroid.js");
+},723,[1,561,19,20,27,30,33,47,200,2,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerAndroid.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -109176,7 +109229,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       overflow: 'hidden'
     }
   });
-},723,[1,561,19,20,27,30,33,47,200,2,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerScroll.js");
+},724,[1,561,19,20,27,30,33,47,200,2,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerScroll.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -109459,7 +109512,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: 'stretch'
     }
   });
-},724,[1,561,8,44,6,19,20,27,30,33,47,200,62,2,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerPan.js");
+},725,[1,561,8,44,6,19,20,27,30,33,47,200,62,2,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerPan.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -109714,7 +109767,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       alignItems: 'stretch'
     }
   });
-},725,[1,561,44,6,19,20,27,30,33,47,200,62,2,720],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerExperimental.js");
+},726,[1,561,44,6,19,20,27,30,33,47,200,62,2,721],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/PagerExperimental.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -109799,7 +109852,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       });
     };
   }
-},726,[1,561,6,19,20,27,30,33,47,200],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/SceneMap.js");
+},727,[1,561,6,19,20,27,30,33,47,200],"node_modules/react-navigation-tabs/node_modules/react-native-tab-view/src/SceneMap.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -110027,7 +110080,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       backgroundColor: 'transparent'
     }
   });
-},727,[1,561,8,6,15,19,20,27,30,33,47,200,2,716,711],"node_modules/react-navigation-tabs/src/views/MaterialTopTabBar.js");
+},728,[1,561,8,6,15,19,20,27,30,33,47,200,2,717,712],"node_modules/react-navigation-tabs/src/views/MaterialTopTabBar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -110534,7 +110587,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},728,[1,15,44,623,677,675,674,637,678,626,729,631],"node_modules/react-navigation/src/routers/StackRouter.js");
+},729,[1,15,44,624,678,676,675,638,679,627,730,632],"node_modules/react-navigation/src/routers/StackRouter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -110552,7 +110605,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function generateKey() {
     return uniqueBaseId + "-" + uuidCount++;
   }
-},729,[],"node_modules/react-navigation/src/routers/KeyGenerator.js");
+},730,[],"node_modules/react-navigation/src/routers/KeyGenerator.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -110577,7 +110630,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},730,[1,44,673,731],"node_modules/react-navigation/src/routers/TabRouter.js");
+},731,[1,44,674,732],"node_modules/react-navigation/src/routers/TabRouter.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -110594,7 +110647,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},731,[],"node_modules/react-navigation/src/utils/withDefaultValue.js");
+},732,[],"node_modules/react-navigation/src/utils/withDefaultValue.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -110613,7 +110666,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = getActiveChildNavigationOptions;
   exports.default = _default;
-},732,[],"node_modules/react-navigation/src/utils/getActiveChildNavigationOptions.js");
+},733,[],"node_modules/react-navigation/src/utils/getActiveChildNavigationOptions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111084,7 +111137,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.withSafeArea = withSafeArea;
-},733,[1,561,8,6,44,19,20,27,30,33,47,200,2,713,734],"node_modules/react-native-safe-area-view/index.js");
+},734,[1,561,8,6,44,19,20,27,30,33,47,200,2,714,735],"node_modules/react-native-safe-area-view/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111203,7 +111256,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     withOrientation = _wrapComponent("withOrientation")(withOrientation);
     return (0, _hoistNonReactStatics.default)(withOrientation, WrappedComponent);
   }
-},734,[1,561,8,19,20,27,30,33,47,200,2,713],"node_modules/react-native-safe-area-view/withOrientation.js");
+},735,[1,561,8,19,20,27,30,33,47,200,2,714],"node_modules/react-native-safe-area-view/withOrientation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111345,7 +111398,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _reactLifecyclesCompat.polyfill)(ResourceSavingSceneView);
 
   exports.default = _default2;
-},735,[1,8,6,19,27,30,20,33,47,200,2,622,680],"node_modules/react-navigation/src/views/ResourceSavingSceneView.js");
+},736,[1,8,6,19,27,30,20,33,47,200,2,623,681],"node_modules/react-navigation/src/views/ResourceSavingSceneView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111472,7 +111525,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default2 = (0, _withNavigation.default)(NavigationEvents);
 
   exports.default = _default2;
-},736,[1,19,20,27,30,33,47,200,737],"node_modules/react-navigation/src/views/NavigationEvents.js");
+},737,[1,19,20,27,30,33,47,200,738],"node_modules/react-navigation/src/views/NavigationEvents.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111565,7 +111618,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     ComponentWithNavigation = _wrapComponent("ComponentWithNavigation")(ComponentWithNavigation);
     return (0, _hoistNonReactStatics.default)(ComponentWithNavigation, Component);
   }
-},737,[1,8,19,20,27,30,33,47,200,713,626,640],"node_modules/react-navigation/src/views/withNavigation.js");
+},738,[1,8,19,20,27,30,33,47,200,714,627,641],"node_modules/react-navigation/src/views/withNavigation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111676,7 +111729,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     ComponentWithNavigationFocus = _wrapComponent("ComponentWithNavigationFocus")(ComponentWithNavigationFocus);
     return (0, _hoistNonReactStatics.default)((0, _withNavigation.default)(ComponentWithNavigationFocus), Component);
   }
-},738,[1,8,19,20,27,30,33,47,200,713,626,737],"node_modules/react-navigation/src/views/withNavigationFocus.js");
+},739,[1,8,19,20,27,30,33,47,200,714,627,738],"node_modules/react-navigation/src/views/withNavigationFocus.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -111789,7 +111842,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     withOrientation = _wrapComponent("withOrientation")(withOrientation);
     return (0, _hoistNonReactStatics.default)(withOrientation, WrappedComponent);
   }
-},739,[1,8,19,20,27,30,33,47,200,2,713],"node_modules/react-navigation/src/views/withOrientation.js");
+},740,[1,8,19,20,27,30,33,47,200,2,714],"node_modules/react-navigation/src/views/withOrientation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireWildcard");
 
@@ -111853,7 +111906,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return navigationStore.getStateForAction(action, state) || state;
     };
   }
-},740,[561,1,741,620,617,742,619],"node_modules/react-native-router-flux/src/Reducer.js");
+},741,[561,1,742,621,618,743,620],"node_modules/react-native-router-flux/src/Reducer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var LARGE_ARRAY_SIZE = 200;
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -112769,7 +112822,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = isEqual;
-},741,[],"node_modules/lodash.isequal/index.js");
+},742,[],"node_modules/lodash.isequal/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -112906,7 +112959,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return state;
   }
-},742,[1,15,44],"node_modules/react-native-router-flux/src/State.js");
+},743,[1,15,44],"node_modules/react-native-router-flux/src/State.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -112952,7 +113005,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.OnEnter = OnEnter;
   var OnExit = 'onExit';
   exports.OnExit = OnExit;
-},743,[],"node_modules/react-native-router-flux/src/Util.js");
+},744,[],"node_modules/react-native-router-flux/src/Util.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -113356,7 +113409,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       resizeMode: 'contain'
     }
   });
-},744,[1,44,8,47,620,2,745],"node_modules/react-native-router-flux/src/NavBar.js");
+},745,[1,44,8,47,621,2,746],"node_modules/react-native-router-flux/src/NavBar.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -113368,7 +113421,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "back_chevron",
     "type": "png"
   });
-},745,[195],"node_modules/react-native-router-flux/images/back_chevron.png");
+},746,[195],"node_modules/react-native-router-flux/images/back_chevron.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -113415,7 +113468,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},746,[1,47,2],"node_modules/react-native-router-flux/src/LightboxRenderer.js");
+},747,[1,47,2],"node_modules/react-native-router-flux/src/LightboxRenderer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -113427,7 +113480,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "menu_burger",
     "type": "png"
   });
-},747,[195],"node_modules/react-native-router-flux/images/menu_burger.png");
+},748,[195],"node_modules/react-native-router-flux/images/menu_burger.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113439,7 +113492,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},748,[],"node_modules/react-native-router-flux/src/Scene.js");
+},749,[],"node_modules/react-native-router-flux/src/Scene.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113451,7 +113504,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},749,[],"node_modules/react-native-router-flux/src/Modal.js");
+},750,[],"node_modules/react-native-router-flux/src/Modal.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113463,7 +113516,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},750,[],"node_modules/react-native-router-flux/src/Lightbox.js");
+},751,[],"node_modules/react-native-router-flux/src/Lightbox.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113475,7 +113528,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},751,[],"node_modules/react-native-router-flux/src/Drawer.js");
+},752,[],"node_modules/react-native-router-flux/src/Drawer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113487,7 +113540,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},752,[],"node_modules/react-native-router-flux/src/Tabs.js");
+},753,[],"node_modules/react-native-router-flux/src/Tabs.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113499,7 +113552,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},753,[],"node_modules/react-native-router-flux/src/LegacyTabs.js");
+},754,[],"node_modules/react-native-router-flux/src/LegacyTabs.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113511,7 +113564,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},754,[],"node_modules/react-native-router-flux/src/Overlay.js");
+},755,[],"node_modules/react-native-router-flux/src/Overlay.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -113571,7 +113624,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},755,[1,47,2],"node_modules/react-native-router-flux/src/OverlayRenderer.js");
+},756,[1,47,2],"node_modules/react-native-router-flux/src/OverlayRenderer.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113589,7 +113642,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},756,[620],"node_modules/react-native-router-flux/src/createStackNavigatorHOC.js");
+},757,[621],"node_modules/react-native-router-flux/src/createStackNavigatorHOC.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113607,7 +113660,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},757,[620],"node_modules/react-native-router-flux/src/createTabNavigatorHOC.js");
+},758,[621],"node_modules/react-native-router-flux/src/createTabNavigatorHOC.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -113682,7 +113735,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = pathParser;
   exports.default = _default;
-},758,[1,45,8,759,9,760],"node_modules/react-native-router-flux/src/pathParser.js");
+},759,[1,45,8,760,9,761],"node_modules/react-native-router-flux/src/pathParser.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayWithHoles = _$$_REQUIRE(_dependencyMap[0], "./arrayWithHoles");
 
@@ -113695,7 +113748,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _toArray;
-},759,[10,17,12],"node_modules/@babel/runtime/helpers/toArray.js");
+},760,[10,17,12],"node_modules/@babel/runtime/helpers/toArray.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = pathToRegexp;
   module.exports.parse = parse;
@@ -113950,7 +114003,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return stringToRegexp(path, keys, options);
   }
-},760,[],"node_modules/path-to-regexp/index.js");
+},761,[],"node_modules/path-to-regexp/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -113962,7 +114015,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.default = _default;
-},761,[],"node_modules/react-native-router-flux/src/Stack.js");
+},762,[],"node_modules/react-native-router-flux/src/Stack.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -114037,6 +114090,56 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.props.playTrack(index, _this.state.songsArray);
       };
 
+      _this.renderItems = function (item, index) {
+        return _react.default.createElement(_reactNative.TouchableOpacity, {
+          onPress: function onPress() {
+            return _this.playMedia(index);
+          },
+          style: styles.itemCard,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 64
+          }
+        }, _react.default.createElement(_reactNative.View, {
+          style: styles.titleCard,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 68
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.titleText,
+          numberOfLines: 1,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 69
+          }
+        }, item.title ? item.title : item.fileName), _react.default.createElement(_reactNative.Text, {
+          style: styles.authorText,
+          numberOfLines: 1,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 72
+          }
+        }, item.author ? item.author : "unknown")), _react.default.createElement(_reactNative.View, {
+          style: styles.timeCard,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 76
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: {
+            fontSize: 14,
+            color: _customColor.customColor.textPrimaryColor,
+            fontFamily: "sans-serif-light",
+            paddingBottom: 8
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 77
+          }
+        }, item.duration ? _this.timeConverter(item.duration) : "")));
+      };
+
       return _this;
     }
 
@@ -114073,7 +114176,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       value: function lineSeperator() {
         return _react.default.createElement(_reactNative.View, {
           style: {
-            height: 2,
+            height: 1,
             backgroundColor: _customColor.customColor.lineSeperator,
             width: "100%"
           },
@@ -114092,13 +114195,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 64
+            lineNumber: 94
           }
         }, _react.default.createElement(_reactNative.StatusBar, {
           barStyle: "dark-content",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 65
+            lineNumber: 95
           }
         }), _react.default.createElement(_reactNative.FlatList, {
           ItemSeparatorComponent: this.lineSeperator,
@@ -114109,7 +114212,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 69
+              lineNumber: 99
             }
           }),
           data: this.state.songsArray,
@@ -114117,60 +114220,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           renderItem: function renderItem(_ref) {
             var item = _ref.item,
                 index = _ref.index;
-            return _react.default.createElement(_reactNative.TouchableOpacity, {
-              onPress: function onPress() {
-                return _this2.playMedia(index);
-              },
-              style: styles.itemCard,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 74
-              }
-            }, _react.default.createElement(_reactNative.View, {
-              style: styles.titleCard,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 78
-              }
-            }, _react.default.createElement(_reactNative.Text, {
-              style: styles.titleText,
-              numberOfLines: 1,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 79
-              }
-            }, item.title ? item.title : item.fileName), _react.default.createElement(_reactNative.Text, {
-              style: styles.authorText,
-              numberOfLines: 1,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 82
-              }
-            }, item.author ? item.author : "unknown")), _react.default.createElement(_reactNative.View, {
-              style: styles.timeCard,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 86
-              }
-            }, _react.default.createElement(_reactNative.Text, {
-              style: {
-                fontSize: 14,
-                color: _customColor.customColor.textPrimaryColor,
-                fontFamily: "sans-serif-light",
-                paddingBottom: 8
-              },
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 87
-              }
-            }, item.duration ? _this2.timeConverter(item.duration) : "")));
+            return _this2.renderItems(item, index);
           },
           keyExtractor: function keyExtractor(item) {
             return item.id;
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 66
+            lineNumber: 96
           }
         }));
       }
@@ -114188,7 +114245,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     flatList: {
       flex: 1,
-      paddingLeft: 10,
+      paddingLeft: 8,
       paddingRight: 8
     },
     itemCard: {
@@ -114205,7 +114262,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     titleCard: {
       justifyContent: "center",
       flex: 6,
-      paddingLeft: 10
+      paddingLeft: 8
     },
     timeCard: {
       justifyContent: "center",
@@ -114224,7 +114281,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       color: _customColor.customColor.textSecondaryColor
     }
   });
-},762,[1,561,19,20,27,30,33,47,200,2,775],"components/screens/mediaList.js");
+},763,[1,561,19,20,27,30,33,47,200,2,563],"components/screens/mediaList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -114445,7 +114502,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       backgroundColor: _customColor.customColor.primaryColor
     }
   });
-},763,[1,561,19,20,27,30,33,47,200,2,775,764,766],"components/screens/artistList.js");
+},764,[1,561,19,20,27,30,33,47,200,2,563,765,767],"components/screens/artistList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -114632,7 +114689,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       padding: 2
     }
   });
-},764,[1,561,19,20,27,30,33,47,200,2,775,765],"components/screens/artistGridView.js");
+},765,[1,561,19,20,27,30,33,47,200,2,563,766],"components/screens/artistGridView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -114644,7 +114701,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "unknownArtist",
     "type": "png"
   });
-},765,[195],"iconPNG/unknownArtist.png");
+},766,[195],"iconPNG/unknownArtist.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -114877,7 +114934,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       color: _customColor.customColor.textPrimaryColor
     }
   });
-},766,[1,561,19,20,27,30,33,47,200,2,775,767,765],"components/screens/modalListArtist.js");
+},767,[1,561,19,20,27,30,33,47,200,2,563,768,766],"components/screens/modalListArtist.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -114889,7 +114946,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "white",
     "type": "png"
   });
-},767,[195],"iconPNG/white.png");
+},768,[195],"iconPNG/white.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115119,7 +115176,145 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       backgroundColor: _customColor.customColor.primaryColor
     }
   });
-},768,[1,561,101,19,20,27,30,33,47,200,2,775,774,770],"components/screens/albumList.js");
+},769,[1,561,101,19,20,27,30,33,47,200,2,563,770,771],"components/screens/albumList.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/inherits"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
+
+  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "./../../node_modules/react-transform-hmr/lib/index.js"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
+
+  var _customColor = _$$_REQUIRE(_dependencyMap[10], "../../customColor");
+
+  var _jsxFileName = "/Users/bishalsaikia/BeePlayer-reactNative/components/screens/albumGridView.js";
+  var _components = {
+    AlbumGridView: {
+      displayName: "AlbumGridView"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
+    filename: "/Users/bishalsaikia/BeePlayer-reactNative/components/screens/albumGridView.js",
+    components: _components,
+    locals: [module],
+    imports: [_react.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var AlbumGridView = _wrapComponent("AlbumGridView")(function (_Component) {
+    (0, _inherits2.default)(AlbumGridView, _Component);
+
+    function AlbumGridView() {
+      (0, _classCallCheck2.default)(this, AlbumGridView);
+      return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(AlbumGridView).apply(this, arguments));
+    }
+
+    (0, _createClass2.default)(AlbumGridView, [{
+      key: "render",
+      value: function render() {
+        var _this = this;
+
+        var widthItem = (this.props.itemWidth - 12) / 2;
+        var item = this.props.item;
+        var index = this.props.index;
+        return _react.default.createElement(_reactNative.TouchableOpacity, {
+          style: [styles.container, {
+            width: widthItem
+          }],
+          onPress: function onPress() {
+            return _this.props.modalFn(index);
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 12
+          }
+        }, _react.default.createElement(_reactNative.Image, {
+          style: {
+            width: widthItem,
+            height: 100,
+            flex: 3
+          },
+          source: item[0].cover ? {
+            uri: item[0].cover
+          } : _$$_REQUIRE(_dependencyMap[11], "../../iconPNG/white.png"),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 16
+          }
+        }), _react.default.createElement(_reactNative.View, {
+          style: {
+            flex: 1,
+            paddingLeft: 10,
+            paddingTop: 8
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          style: {
+            color: _customColor.customColor.textPrimaryColor
+          },
+          numberOfLines: 1,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 31
+          }
+        }, item[0].album ? item[0].album : "Unknown Album"), _react.default.createElement(_reactNative.Text, {
+          style: {
+            color: _customColor.customColor.textSecondaryColor,
+            fontFamily: "sans-serif-light"
+          },
+          numberOfLines: 1,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 37
+          }
+        }, item.length, " Songs")));
+      }
+    }]);
+    return AlbumGridView;
+  }(_react.Component));
+
+  var _default2 = AlbumGridView;
+  exports.default = _default2;
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      backgroundColor: _customColor.customColor.primaryColor,
+      borderRadius: 10,
+      marginLeft: 3,
+      marginRight: 3,
+      marginTop: 10,
+      marginBottom: 12,
+      height: 170
+    }
+  });
+},770,[1,561,19,20,27,30,33,47,200,2,563,768],"components/screens/albumGridView.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -115388,7 +115583,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     flatList: {
       flex: 1,
-      backgroundColor: _customColor.customColor.secondaryColor,
+      backgroundColor: _customColor.customColor.primaryColor,
       paddingTop: 15,
       paddingLeft: 8,
       paddingRight: 8
@@ -115410,7 +115605,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       color: _customColor.customColor.textPrimaryColor
     }
   });
-},770,[1,561,19,20,27,30,33,47,200,2,775,614,771],"components/screens/modalListAlbum.js");
+},771,[1,561,19,20,27,30,33,47,200,2,563,615,772],"components/screens/modalListAlbum.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -115422,7 +115617,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "half",
     "type": "png"
   });
-},771,[195],"iconPNG/half.png");
+},772,[195],"iconPNG/half.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -115455,175 +115650,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = MusicFiles;
   exports.default = _default;
-},772,[2],"node_modules/react-native-get-music-files/index.js");
+},773,[2],"node_modules/react-native-get-music-files/index.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "name": "beeplayer",
   "displayName": "beeplayer"
 };
-},773,[],"app.json");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = void 0;
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/inherits"));
-
-  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
-
-  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "./../../node_modules/react-transform-hmr/lib/index.js"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
-
-  var _customColor = _$$_REQUIRE(_dependencyMap[10], "../../customColor");
-
-  var _jsxFileName = "/Users/bishalsaikia/BeePlayer-reactNative/components/screens/albumGridView.js";
-  var _components = {
-    AlbumGridView: {
-      displayName: "AlbumGridView"
-    }
-  };
-
-  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "/Users/bishalsaikia/BeePlayer-reactNative/components/screens/albumGridView.js",
-    components: _components,
-    locals: [module],
-    imports: [_react.default]
-  });
-
-  function _wrapComponent(id) {
-    return function (Component) {
-      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-    };
-  }
-
-  var AlbumGridView = _wrapComponent("AlbumGridView")(function (_Component) {
-    (0, _inherits2.default)(AlbumGridView, _Component);
-
-    function AlbumGridView() {
-      (0, _classCallCheck2.default)(this, AlbumGridView);
-      return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(AlbumGridView).apply(this, arguments));
-    }
-
-    (0, _createClass2.default)(AlbumGridView, [{
-      key: "render",
-      value: function render() {
-        var _this = this;
-
-        var widthItem = (this.props.itemWidth - 12) / 2;
-        var item = this.props.item;
-        var index = this.props.index;
-        return _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: [styles.container, {
-            width: widthItem
-          }],
-          onPress: function onPress() {
-            return _this.props.modalFn(index);
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 12
-          }
-        }, _react.default.createElement(_reactNative.Image, {
-          style: {
-            width: widthItem,
-            height: 100,
-            flex: 3
-          },
-          source: item[0].cover ? {
-            uri: item[0].cover
-          } : _$$_REQUIRE(_dependencyMap[11], "../../iconPNG/white.png"),
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 16
-          }
-        }), _react.default.createElement(_reactNative.View, {
-          style: {
-            flex: 1,
-            paddingLeft: 10,
-            paddingTop: 8
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 24
-          }
-        }, _react.default.createElement(_reactNative.Text, {
-          style: {
-            color: _customColor.customColor.textPrimaryColor
-          },
-          numberOfLines: 1,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 31
-          }
-        }, item[0].album ? item[0].album : "Unknown Album"), _react.default.createElement(_reactNative.Text, {
-          style: {
-            color: _customColor.customColor.textSecondaryColor,
-            fontFamily: "sans-serif-light"
-          },
-          numberOfLines: 1,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 37
-          }
-        }, item.length, " Songs")));
-      }
-    }]);
-    return AlbumGridView;
-  }(_react.Component));
-
-  var _default2 = AlbumGridView;
-  exports.default = _default2;
-
-  var styles = _reactNative.StyleSheet.create({
-    container: {
-      backgroundColor: _customColor.customColor.primaryColor,
-      borderRadius: 10,
-      marginLeft: 3,
-      marginRight: 3,
-      marginTop: 10,
-      marginBottom: 12,
-      height: 170
-    }
-  });
-},774,[1,561,19,20,27,30,33,47,200,2,775,767],"components/screens/albumGridView.js");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.customColor = void 0;
-  var customColor1 = {
-    primaryColor: "rgb(0,0,0)",
-    secondaryColor: "rgb(46,47,51)",
-    textPrimaryColor: "rgb(240,240,240)",
-    textSecondaryColor: "rgb(100,103,113)",
-    activeColor: "rgb(0,253,253)",
-    lineSeperator: "rgb(20,20,20)"
-  };
-  var customColor2 = {
-    primaryColor: "white",
-    secondaryColor: "grey",
-    textPrimaryColor: "black",
-    textSecondaryColor: "grey",
-    activeColor: "pink",
-    lineSeperator: "pink"
-  };
-  var customColor = customColor1;
-  exports.customColor = customColor;
-},775,[],"customColor.js");
+},774,[],"app.json");
 __r(84);
 __r(0);
 //# sourceMappingURL=index.map

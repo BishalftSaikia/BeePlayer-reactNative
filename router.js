@@ -27,17 +27,14 @@ export default class RootRouter extends Component {
         <Scene key="root">
           <Scene
             key="tab"
-            onScroll={this.props.onScroll}
             playTrack={this.props.playTrack} //..... Changing Song
             songsArray={this.props.songsArray}
             title="Home"
             tabs
             tabBarPosition="top"
             tabBarStyle={{
-              backgroundColor: customColor.primaryColor,
-              height: "8%",
-              borderBottomColor: customColor.textSecondaryColor,
-              borderBottomWidth: 1
+              backgroundColor: customColor.secondaryColor,
+              height: "7%"
             }}
             hideNavBar
             inactiveTintColor={customColor.textSecondaryColor}

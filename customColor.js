@@ -1,10 +1,10 @@
 const customColor1 = {
-  primaryColor: "rgb(0,0,0)",
-  secondaryColor: "rgb(46,47,51)",
-  textPrimaryColor: "rgb(240,240,240)",
-  textSecondaryColor: "rgb(100,103,113)",
-  activeColor: "rgb(0,253,253)",
-  lineSeperator: "rgb(20,20,20)"
+  primaryColor: "rgb(28,28,28)",
+  secondaryColor: "rgb(48,49,48)",
+  textPrimaryColor: "rgb(222,222,222)",
+  textSecondaryColor: "rgb(162,162,162)",
+  activeColor: "rgba(0,253,253,0.6)",
+  lineSeperator: "rgb(58,57,58)"
 };
 
 const customColor2 = {

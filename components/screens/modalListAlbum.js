@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
-    backgroundColor: customColor.secondaryColor,
+    backgroundColor: customColor.primaryColor,
     paddingTop: 15,
     paddingLeft: 8,
     paddingRight: 8

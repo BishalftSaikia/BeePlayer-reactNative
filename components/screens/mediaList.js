@@ -51,13 +51,43 @@ export default class MediaList extends Component {
     return (
       <View
         style={{
-          height: 2,
+          height: 1,
           backgroundColor: customColor.lineSeperator,
           width: "100%"
         }}
       />
     );
   }
+
+  renderItems = (item, index) => {
+    return (
+      <TouchableOpacity
+        onPress={() => this.playMedia(index)}
+        style={styles.itemCard}
+      >
+        <View style={styles.titleCard}>
+          <Text style={styles.titleText} numberOfLines={1}>
+            {item.title ? item.title : item.fileName}
+          </Text>
+          <Text style={styles.authorText} numberOfLines={1}>
+            {item.author ? item.author : "unknown"}
+          </Text>
+        </View>
+        <View style={styles.timeCard}>
+          <Text
+            style={{
+              fontSize: 14,
+              color: customColor.textPrimaryColor,
+              fontFamily: "sans-serif-light",
+              paddingBottom: 8
+            }}
+          >
+            {item.duration ? this.timeConverter(item.duration) : ""}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   render() {
     return (
@@ -70,33 +100,7 @@ export default class MediaList extends Component {
           }
           data={this.state.songsArray}
           style={styles.flatList}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => this.playMedia(index)}
-              style={styles.itemCard}
-            >
-              <View style={styles.titleCard}>
-                <Text style={styles.titleText} numberOfLines={1}>
-                  {item.title ? item.title : item.fileName}
-                </Text>
-                <Text style={styles.authorText} numberOfLines={1}>
-                  {item.author ? item.author : "unknown"}
-                </Text>
-              </View>
-              <View style={styles.timeCard}>
-                <Text
-                  style={{
-                    fontSize: 14,
-                    color: customColor.textPrimaryColor,
-                    fontFamily: "sans-serif-light",
-                    paddingBottom: 8
-                  }}
-                >
-                  {item.duration ? this.timeConverter(item.duration) : ""}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
+          renderItem={({ item, index }) => this.renderItems(item, index)}
           keyExtractor={item => item.id}
         />
       </View>
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
 
   flatList: {
     flex: 1,
-    paddingLeft: 10,
+    paddingLeft: 8,
     paddingRight: 8
   },
 
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
   titleCard: {
     justifyContent: "center",
     flex: 6,
-    paddingLeft: 10
+    paddingLeft: 8
   },
   timeCard: {
     justifyContent: "center",

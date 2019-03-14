@@ -44,6 +44,7 @@ export default class MainComponent extends Component {
 
   componentWillUnmount() {
     AsyncStorage.setItem("songsArray", JSON.stringify(this.state.songsArray));
+    AsyncStorage.setItem("queueList", JSON.stringify(this.state.queueList));
   }
 
   getMedia = async () => {
@@ -60,7 +61,7 @@ export default class MainComponent extends Component {
         let songsArray = JSON.parse(await AsyncStorage.getItem("songsArray"));
         let queueList = JSON.parse(await AsyncStorage.getItem("queueList"));
 
-        if (songsArray) {
+        if (songsArray.length) {
           this.setState({
             loading: true,
             songsArray,
@@ -99,8 +100,6 @@ export default class MainComponent extends Component {
   };
 
   newSongPlay = (index, songlist) => {
-    AsyncStorage.setItem("queueList", JSON.stringify(songlist));
-    AsyncStorage.setItem("currentSong", JSON.stringify(index));
     this.refs.nowChild.playSong(index, songlist);
   };
 
@@ -121,10 +120,12 @@ export default class MainComponent extends Component {
           <View style={{ flex: 1 }}>
             <View
               style={{
-                backgroundColor: customColor.secondaryColor,
+                backgroundColor: customColor.primaryColor,
                 height: navHeight,
                 width: "100%",
-                flexDirection: "column"
+                flexDirection: "column",
+                borderBottomColor: customColor.secondaryColor,
+                borderBottomWidth: 1
               }}
             >
               <View
@@ -136,14 +137,16 @@ export default class MainComponent extends Component {
                 }}
               >
                 <Text
-                  style={{ fontSize: 20, color: customColor.textPrimaryColor }}
+                  style={{
+                    fontSize: 20,
+                    color: customColor.textPrimaryColor
+                  }}
                 >
-                  Home
+                  BeePlayer
                 </Text>
               </View>
             </View>
             <RootRouter //.........................................................RootRouter
-              onScroll={this.onScroll}
               playTrack={this.newSongPlay}
               songsArray={this.state.songsArray}
             />
