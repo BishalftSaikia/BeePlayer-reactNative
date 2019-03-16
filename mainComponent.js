@@ -9,16 +9,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Animated,
-  Dimensions
+  ProgressBarAndroid,
+  StatusBar
 } from "react-native";
 import NowPlaying from "./components/screens/nowPlaying";
 import RootRouter from "./router";
 import MusicFiles from "react-native-get-music-files";
-import { customColor } from "./customColor";
-
-const screenHeight = Dimensions.get("window").height;
-const navHeight = 0.09 * screenHeight;
+import NavBar from "./components/screens/navBar";
 
 export default class MainComponent extends Component {
   state = {
@@ -29,7 +26,6 @@ export default class MainComponent extends Component {
   };
 
   componentWillMount() {
-    this.animation = new Animated.Value(0);
     DeviceEventEmitter.addListener("onBatchReceived", params => {
       this.setState({
         loading: true,
@@ -104,48 +100,12 @@ export default class MainComponent extends Component {
   };
 
   render() {
-    navBarHeight = this.animation.interpolate({
-      inputRange: [0, 100],
-      outputRange: [navHeight, 0],
-      extrapolate: "clamp"
-    });
-    navBarOpacity = this.animation.interpolate({
-      inputRange: [0, 50, 120],
-      outputRange: [1, 0, 0],
-      extrapolate: "clamp"
-    });
     if (this.state.loading) {
       if (this.state.songsArray.length) {
         return (
           <View style={{ flex: 1 }}>
-            <View
-              style={{
-                backgroundColor: customColor.primaryColor,
-                height: navHeight,
-                width: "100%",
-                flexDirection: "column",
-                borderBottomColor: customColor.secondaryColor,
-                borderBottomWidth: 1
-              }}
-            >
-              <View
-                style={{
-                  flex: 3,
-                  justifyContent: "center",
-                  alignContent: "center",
-                  paddingLeft: 20
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: customColor.textPrimaryColor
-                  }}
-                >
-                  BeePlayer
-                </Text>
-              </View>
-            </View>
+            <StatusBar backgroundColor="#bbd2c5" />
+            <NavBar heading="Beeplayer" />
             <RootRouter //.........................................................RootRouter
               playTrack={this.newSongPlay}
               songsArray={this.state.songsArray}
@@ -173,7 +133,12 @@ export default class MainComponent extends Component {
         );
       }
     } else {
-      return null;
+      return (
+        <View style={styles.container}>
+          <Text>Beeplayer</Text>
+          <ProgressBarAndroid styleAttr="Horizontal" />
+        </View>
+      );
     }
   }
 }

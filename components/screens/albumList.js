@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, FlatList, Dimensions, Modal, View } from "react-native";
 
 import { customColor } from "../../customColor";
+import LinearGradient from "react-native-linear-gradient";
 
 import AlbumGridView from "./albumGridView";
 import ModalList from "./modalListAlbum";
@@ -60,7 +61,10 @@ export default class AlbumList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <LinearGradient
+        colors={["#bbd2c5", "#536976", "#292e49"]}
+        style={styles.container}
+      >
         <Modal
           transparent={false}
           visible={this.state.visible}
@@ -90,14 +94,13 @@ export default class AlbumList extends Component {
           )}
           keyExtractor={item => item[0].id}
         />
-      </View>
+      </LinearGradient>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: customColor.primaryColor
+    flex: 1
   }
 });

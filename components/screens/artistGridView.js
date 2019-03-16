@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     height: 170,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: customColor.primaryColor
+    backgroundColor: "transparent"
   },
   artistView: {
     width: 140,

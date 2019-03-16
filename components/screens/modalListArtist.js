@@ -12,6 +12,7 @@ import {
 const screenHeight = Dimensions.get("window").height;
 
 import { customColor } from "../../customColor";
+import LinearGradient from "react-native-linear-gradient";
 
 export default class ModalList extends Component {
   state = {
@@ -35,47 +36,52 @@ export default class ModalList extends Component {
   };
   render() {
     return (
-      <FlatList
-        data={this.state.data}
-        style={styles.flatList}
-        ListHeaderComponent={
-          <ImageBackground
-            source={
-              this.props.uri
-                ? { uri: this.props.uri }
-                : require("../../iconPNG/white.png")
-            }
-            style={[styles.View1, { marginBottom: 15 }]}
-          >
-            <View style={[styles.View1, { width: "100%", height: "100%" }]}>
-              <Image
-                source={
-                  this.props.uri
-                    ? { uri: this.props.uri }
-                    : require("../../iconPNG/unknownArtist.png")
-                }
-                style={styles.listItemAvatar}
-              />
-              <Text style={styles.authorText} numberOfLines={1}>
-                {this.state.data[0].author}
+      <LinearGradient
+        colors={["#bbd2c5", "#536976", "#292e49"]}
+        style={{ flex: 1 }}
+      >
+        <FlatList
+          data={this.state.data}
+          style={styles.flatList}
+          ListHeaderComponent={
+            <ImageBackground
+              source={
+                this.props.uri
+                  ? { uri: this.props.uri }
+                  : require("../../iconPNG/white.png")
+              }
+              style={[styles.View1, { marginBottom: 15 }]}
+            >
+              <View style={[styles.View1, { width: "100%", height: "100%" }]}>
+                <Image
+                  source={
+                    this.props.uri
+                      ? { uri: this.props.uri }
+                      : require("../../iconPNG/unknownArtist.png")
+                  }
+                  style={styles.listItemAvatar}
+                />
+                <Text style={styles.authorText} numberOfLines={1}>
+                  {this.state.data[0].author}
+                </Text>
+              </View>
+            </ImageBackground>
+          }
+          ItemSeparatorComponent={this.renderSeparator}
+          ListFooterComponent={<View style={{ height: 0, marginBottom: 14 }} />}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              onPress={() => this.playMedia(index)}
+              style={styles.itemCard}
+            >
+              <Text style={styles.titleText} numberOfLines={1}>
+                {item.title ? item.title : item.fileName.split(".mp3")[0]}
               </Text>
-            </View>
-          </ImageBackground>
-        }
-        ItemSeparatorComponent={this.renderSeparator}
-        ListFooterComponent={<View style={{ height: 0, marginBottom: 14 }} />}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            onPress={() => this.playMedia(index)}
-            style={styles.itemCard}
-          >
-            <Text style={styles.titleText} numberOfLines={1}>
-              {item.title ? item.title : item.fileName.split(".mp3")[0]}
-            </Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={item => item.id}
-      />
+            </TouchableOpacity>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </LinearGradient>
     );
   }
 }
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
-    backgroundColor: customColor.primaryColor,
+    backgroundColor: "transparent",
     paddingTop: 15,
     paddingLeft: 8,
     paddingRight: 8

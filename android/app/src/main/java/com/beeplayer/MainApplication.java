@@ -3,6 +3,8 @@ package com.beeplayer;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.tanguyantoine.react.MusicControl;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.cinder92.musicfiles.RNReactNativeGetMusicFilesPackage;
@@ -26,6 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LinearGradientPackage(),
+            new MusicControl(),
             new RNSoundPackage(),
             new VectorIconsPackage(),
             new RNReactNativeGetMusicFilesPackage()

@@ -51,7 +51,7 @@ export default class AlbumGridView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: customColor.primaryColor,
+    backgroundColor: "rgba(0,0,0,0.1)",
     borderRadius: 10,
     marginLeft: 3,
     marginRight: 3,

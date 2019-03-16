@@ -10,6 +10,8 @@ import {
   Animated
 } from "react-native";
 
+import LinearGradient from "react-native-linear-gradient";
+
 import { customColor } from "../../customColor";
 
 export default class MediaList extends Component {
@@ -91,10 +93,13 @@ export default class MediaList extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <LinearGradient
+        style={styles.container}
+        colors={["#bbd2c5", "#536976", "#292e49"]}
+      >
         <StatusBar barStyle="dark-content" />
         <FlatList
-          ItemSeparatorComponent={this.lineSeperator}
+          //ItemSeparatorComponent={this.lineSeperator}
           ListFooterComponent={
             <View style={{ height: 0, marginBottom: "18%" }} />
           }
@@ -103,15 +108,14 @@ export default class MediaList extends Component {
           renderItem={({ item, index }) => this.renderItems(item, index)}
           keyExtractor={item => item.id}
         />
-      </View>
+      </LinearGradient>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: customColor.primaryColor
+    flex: 1
   },
 
   flatList: {

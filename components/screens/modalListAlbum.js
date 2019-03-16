@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { customColor } from "../../customColor";
+import LinearGradient from "react-native-linear-gradient";
 
 const screenHeight = Dimensions.get("window").height;
 
@@ -34,96 +35,101 @@ export default class ModalList extends Component {
   };
   render() {
     return (
-      <FlatList
-        data={this.state.data}
-        style={styles.flatList}
-        ListHeaderComponent={
-          <View style={styles.View1}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "flex-start",
-                alignItems: "flex-start"
-              }}
-            >
-              <Text style={styles.albumText} numberOfLines={1}>
-                {this.state.data[0].album}
-              </Text>
-            </View>
-
-            <View
-              style={{
-                flex: 6,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
+      <LinearGradient
+        colors={["#bbd2c5", "#536976", "#292e49"]}
+        style={{ flex: 1 }}
+      >
+        <FlatList
+          data={this.state.data}
+          style={styles.flatList}
+          ListHeaderComponent={
+            <View style={styles.View1}>
               <View
                 style={{
-                  flex: 1.8,
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                  marginLeft: 10
+                  flex: 1,
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start"
                 }}
               >
-                <Image
-                  source={
-                    this.state.data[0].cover
-                      ? { uri: this.state.data[0].cover }
-                      : require("../../iconPNG/noAlbumArt.jpg")
-                  }
+                <Text style={styles.albumText} numberOfLines={1}>
+                  {this.state.data[0].album}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  flex: 6,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <View
                   style={{
-                    width: 185,
-                    height: 200,
-                    borderWidth: 1,
-                    borderColor: "grey"
+                    flex: 1.8,
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    marginLeft: 10
                   }}
-                />
+                >
+                  <Image
+                    source={
+                      this.state.data[0].cover
+                        ? { uri: this.state.data[0].cover }
+                        : require("../../iconPNG/noAlbumArt.jpg")
+                    }
+                    style={{
+                      width: 185,
+                      height: 200,
+                      borderWidth: 1,
+                      borderColor: "grey"
+                    }}
+                  />
+                </View>
+
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    marginRight: 10
+                  }}
+                >
+                  <Image
+                    source={require("../../iconPNG/half.png")}
+                    style={{ width: 100, height: 194 }}
+                  />
+                </View>
               </View>
 
               <View
                 style={{
                   flex: 1,
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                  marginRight: 10
+                  justifyContent: "flex-end",
+                  alignItems: "flex-end"
                 }}
               >
-                <Image
-                  source={require("../../iconPNG/half.png")}
-                  style={{ width: 100, height: 194 }}
-                />
+                <Text style={styles.authorText} numberOfLines={1}>
+                  {this.state.data[0].author}
+                </Text>
               </View>
             </View>
-
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "flex-end",
-                alignItems: "flex-end"
-              }}
+          }
+          ItemSeparatorComponent={this.renderSeparator}
+          ListFooterComponent={<View style={{ height: 0, marginBottom: 20 }} />}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              onPress={() => this.playMedia(index)}
+              style={styles.itemCard}
             >
-              <Text style={styles.authorText} numberOfLines={1}>
-                {this.state.data[0].author}
+              <Text style={styles.titleText} numberOfLines={1}>
+                {item.title ? item.title : item.fileName.split(".mp3")[0]}
               </Text>
-            </View>
-          </View>
-        }
-        ItemSeparatorComponent={this.renderSeparator}
-        ListFooterComponent={<View style={{ height: 0, marginBottom: 20 }} />}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            onPress={() => this.playMedia(index)}
-            style={styles.itemCard}
-          >
-            <Text style={styles.titleText} numberOfLines={1}>
-              {item.title ? item.title : item.fileName.split(".mp3")[0]}
-            </Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={item => item.id}
-      />
+            </TouchableOpacity>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </LinearGradient>
     );
   }
 }
@@ -148,7 +154,7 @@ const styles = StyleSheet.create({
   },
   flatList: {
     flex: 1,
-    backgroundColor: customColor.primaryColor,
+    backgroundColor: "transparent",
     paddingTop: 15,
     paddingLeft: 8,
     paddingRight: 8

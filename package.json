@@ -10,6 +10,8 @@
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-get-music-files": "^2.1.0",
+    "react-native-linear-gradient": "^2.5.3",
+    "react-native-music-control": "^0.9.9",
     "react-native-router-flux": "^4.0.6",
     "react-native-sound": "^0.10.12",
     "react-native-vector-icons": "^6.3.0"

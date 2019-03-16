@@ -9,9 +9,14 @@ import {
   AsyncStorage,
   PanResponder,
   Animated,
-  Dimensions
+  Dimensions,
+  Slider,
+  StatusBar
 } from "react-native";
 import { customColor } from "../../customColor";
+import LinearGradient from "react-native-linear-gradient";
+
+import MusicControl from "react-native-music-control";
 
 import Icon from "react-native-vector-icons/Feather";
 
@@ -25,11 +30,15 @@ export default class NowPlaying extends Component {
   state = {
     queueList: [],
     songIndex: null,
-    pause: true
+    pause: true,
+    playSeconds: 0,
+    duration: 0,
+    statusbarColor: "#bbd2c5"
   };
   componentWillMount() {
     item = this.props.queueList[this.props.index];
     this.animation = new Animated.ValueXY({ x: 0, y: screenHeight - 90 });
+    this.progressWidth = new Animated.Value(0);
     this.PanResponder = PanResponder.create({
       onMoveShouldSetPanResponder: (evt, gestureState) => {
         return !(gestureState.dx === 0 && gestureState.dy === 0);
@@ -62,12 +71,14 @@ export default class NowPlaying extends Component {
             toValue: -screenHeight + 90,
             tension: 40
           }).start();
+          this.setState({ statusbarColor: "#292e49" });
         } else if (gestureState.dy > 0) {
           //.......................Pan moving Downward
           Animated.spring(this.animation.y, {
             toValue: screenHeight - 90,
             tension: 40
           }).start();
+          this.setState({ statusbarColor: "#bbd2c5" });
         }
       }
     });
@@ -88,11 +99,32 @@ export default class NowPlaying extends Component {
     } else {
       this.setState({ pause: wasPlaying });
     }
+    this.allMusicControlCrap();
+    this.timeout = setInterval(() => {
+      if (song && this.state.pause == false) {
+        song.getCurrentTime(sec => {
+          this.progressWidth.setValue(sec);
+          this.setState({
+            playSeconds: sec
+          });
+        });
+      }
+    }, 100);
   }
 
   componentWillUnmount() {
     AsyncStorage.setItem("playing", JSON.stringify(this.state.pause));
     AsyncStorage.setItem("currentSong", JSON.stringify(this.state.songIndex));
+  }
+
+  allMusicControlCrap() {
+    //events listener
+    MusicControl.enableBackgroundMode(true);
+  }
+
+  timeConverter(millis) {
+    let seconds = (millis / 1000).toFixed(0);
+    return Number(seconds);
   }
 
   playSong = (index, songList) => {
@@ -118,10 +150,12 @@ export default class NowPlaying extends Component {
         });
       }
     });
+    let duration = this.timeConverter(item.duration);
     this.setState({
       pause: false,
       songIndex: index,
-      queueList: songList
+      queueList: songList,
+      duration
     });
   };
 
@@ -163,6 +197,16 @@ export default class NowPlaying extends Component {
     }
   };
 
+  editSlider = value => {
+    if (song) {
+      this.progressWidth.setValue(value);
+      song.setCurrentTime(value);
+      this.setState({
+        playSeconds: value
+      });
+    }
+  };
+
   render() {
     const animatedHeight = {
       transform: this.animation.getTranslateTransform()
@@ -179,8 +223,8 @@ export default class NowPlaying extends Component {
       extrapolate: "clamp"
     });
     animatedBorderRadius = this.animation.y.interpolate({
-      inputRange: [0, screenHeight - 90],
-      outputRange: [10, 0],
+      inputRange: [0, 0.2, screenHeight - 90],
+      outputRange: [12, 0, 0],
       extrapolate: "clamp"
     });
     animatedImageHeight = this.animation.y.interpolate({
@@ -193,6 +237,7 @@ export default class NowPlaying extends Component {
       outputRange: [screenWidth / 2 - 85, 8],
       extrapolate: "clamp"
     });
+
     animatedSongTitleOpacity = this.animation.y.interpolate({
       inputRange: [0, screenHeight - 150, screenHeight - 90],
       outputRange: [0, 0, 1],
@@ -209,9 +254,21 @@ export default class NowPlaying extends Component {
       extrapolate: "clamp"
     });
 
+    animatedWidth = this.progressWidth.interpolate({
+      inputRange: [0, this.state.duration],
+      outputRange: [0, screenWidth],
+      extrapolate: "clamp"
+    });
+    animatedProgressOpacity = this.animation.y.interpolate({
+      inputRange: [0, screenHeight - 100, screenHeight - 90],
+      outputRange: [0, 0, 1],
+      extrapolate: "clamp"
+    });
+
     if (item) {
       return (
         <React.Fragment>
+          <StatusBar backgroundColor={this.state.statusbarColor} />
           <Animated.View
             style={[
               animatedHeight,
@@ -220,168 +277,210 @@ export default class NowPlaying extends Component {
                 right: 0,
                 left: 0,
                 backgroundColor: customColor.secondaryColor,
-                height: screenHeight + 90,
-                borderTopWidth: 1,
-                borderTopColor: "black"
+                height: screenHeight + 90
               }
             ]}
           >
-            <Animated.View //................................................Header.....
-              {...this.PanResponder.panHandlers}
-              style={{
-                height: animatedHeaderHeight,
-                flexDirection: "row",
-                paddingTop: animatedHeaderPaddingTop
-              }}
+            <LinearGradient
+              style={{ flex: 1 }}
+              colors={["#292e49", "#536976", "#bbd2c5"]}
             >
-              <TouchableOpacity
+              <Animated.View //..............................progressBar
                 style={{
-                  flex: 4,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-                onPress={() => {
-                  Animated.spring(this.animation.y, {
-                    toValue: 0,
-                    tension: 60
-                  }).start();
+                  height: 2,
+                  width: "100%",
+                  opacity: animatedProgressOpacity
                 }}
               >
-                <Animated.Image
+                <Animated.View
                   style={{
-                    height: animatedImageHeight,
-                    width: animatedImageHeight,
-                    marginLeft: animatedImageMargin,
-                    borderRadius: animatedBorderRadius
+                    height: 2,
+                    backgroundColor: "#bbd2c5",
+                    width: animatedWidth
                   }}
-                  source={
-                    item.cover
-                      ? { uri: item.cover }
-                      : require("../../iconPNG/noAlbumArt.jpg")
-                  }
                 />
-
-                <View style={{ flex: 1, flexWrap: "wrap" }}>
-                  <Animated.Text
-                    style={{
-                      opacity: animatedSongTitleOpacity,
-                      fontSize: 12,
-                      paddingLeft: 10,
-                      flexWrap: "wrap",
-                      color: customColor.textPrimaryColor
-                    }}
-                    numberOfLines={1}
-                  >
-                    {item.title ? item.title : item.fileName.split(".mp3")[0]}
-                  </Animated.Text>
-                  <Animated.Text
-                    style={{
-                      opacity: animatedSongTitleOpacity,
-                      fontSize: 12,
-                      paddingLeft: 10,
-
-                      color: customColor.textSecondaryColor
-                    }}
-                    numberOfLines={1}
-                  >
-                    {item.author ? item.author : "unknown"}
-                  </Animated.Text>
-                </View>
-              </TouchableOpacity>
-              <Animated.View
-                style={{
-                  opacity: animatedButtonOpacity,
-                  flex: 1,
-                  alignItems: "center",
-                  flexDirection: "row",
-                  paddingLeft: 10,
-                  justifyContent: "space-around"
-                }}
-              >
-                <TouchableOpacity
-                  onPress={this.resumePause}
-                  style={{ flex: 1, height: 80, justifyContent: "center" }}
-                >
-                  <Icon
-                    name={this.state.pause ? "play" : "pause"}
-                    size={18}
-                    color={customColor.textPrimaryColor}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.nextPrevSong("next")}
-                  style={{ flex: 1, height: 80, justifyContent: "center" }}
-                >
-                  <Icon
-                    name="skip-forward"
-                    size={18}
-                    color={customColor.textPrimaryColor}
-                  />
-                </TouchableOpacity>
               </Animated.View>
-            </Animated.View>
-            <Animated.View //....................................................Body
-              style={{
-                height: screenHeight / 2,
-                justifyContent: "center",
-                alignItems: "center",
-                opacity: animatedBodyOpacity
-              }}
-            >
-              <View
+
+              <Animated.View //................................................Header.....
+                {...this.PanResponder.panHandlers}
                 style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
-                <Text style={styles.titleText} numberOfLines={1}>
-                  {item.title ? item.title : item.fileName.split(".mp3")[0]}
-                </Text>
-                <Text style={styles.authorText} numberOfLines={1}>
-                  {item.author ? item.author : "Unknown"}
-                </Text>
-              </View>
-              <View
-                style={{
-                  flex: 1,
+                  height: animatedHeaderHeight,
                   flexDirection: "row",
-                  justifyContent: "center"
+                  paddingTop: animatedHeaderPaddingTop
                 }}
               >
                 <TouchableOpacity
-                  onPress={() => this.nextPrevSong("prev")}
-                  style={styles.bodyButton}
+                  style={{
+                    flex: 4,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                  onPress={() => {
+                    Animated.spring(this.animation.y, {
+                      toValue: 0,
+                      tension: 60
+                    }).start();
+                  }}
                 >
-                  <Icon
-                    name="skip-back"
-                    size={18}
-                    color={customColor.textPrimaryColor}
+                  <Animated.Image
+                    style={{
+                      height: animatedImageHeight,
+                      width: animatedImageHeight,
+                      marginLeft: animatedImageMargin,
+                      borderRadius: animatedBorderRadius
+                    }}
+                    source={
+                      item.cover
+                        ? { uri: item.cover }
+                        : require("../../iconPNG/noAlbumArt.jpg")
+                    }
                   />
+
+                  <View style={{ flex: 1, flexWrap: "wrap" }}>
+                    <Animated.Text
+                      style={{
+                        opacity: animatedSongTitleOpacity,
+                        fontSize: 12,
+                        paddingLeft: 10,
+                        flexWrap: "wrap",
+                        color: customColor.textPrimaryColor
+                      }}
+                      numberOfLines={1}
+                    >
+                      {item.title ? item.title : item.fileName.split(".mp3")[0]}
+                    </Animated.Text>
+                    <Animated.Text
+                      style={{
+                        opacity: animatedSongTitleOpacity,
+                        fontSize: 12,
+                        paddingLeft: 10,
+
+                        color: customColor.textSecondaryColor
+                      }}
+                      numberOfLines={1}
+                    >
+                      {item.author ? item.author : "unknown"}
+                    </Animated.Text>
+                  </View>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={this.resumePause}
-                  style={styles.bodyButton}
+                <Animated.View
+                  style={{
+                    opacity: animatedButtonOpacity,
+                    flex: 1,
+                    alignItems: "center",
+                    flexDirection: "row",
+                    paddingLeft: 10,
+                    justifyContent: "space-around"
+                  }}
                 >
-                  <Icon
-                    name={this.state.pause ? "play" : "pause"}
-                    size={22}
-                    color={customColor.textPrimaryColor}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.nextPrevSong("next")}
-                  style={styles.bodyButton}
+                  <TouchableOpacity
+                    onPress={this.resumePause}
+                    style={{ flex: 1, height: 80, justifyContent: "center" }}
+                  >
+                    <Icon
+                      name={this.state.pause ? "play" : "pause"}
+                      size={18}
+                      color={customColor.textPrimaryColor}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.nextPrevSong("next")}
+                    style={{ flex: 1, height: 80, justifyContent: "center" }}
+                  >
+                    <Icon
+                      name="skip-forward"
+                      size={18}
+                      color={customColor.textPrimaryColor}
+                    />
+                  </TouchableOpacity>
+                </Animated.View>
+              </Animated.View>
+              <Animated.View //....................................................Body
+                style={{
+                  height: screenHeight / 2,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  opacity: animatedBodyOpacity
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingLeft: 8,
+                    paddingRight: 8
+                  }}
                 >
-                  <Icon
-                    name="skip-forward"
-                    size={18}
-                    color={customColor.textPrimaryColor}
+                  <Text style={styles.titleText} numberOfLines={1}>
+                    {item.title ? item.title : item.fileName.split(".mp3")[0]}
+                  </Text>
+                  <Text style={styles.authorText} numberOfLines={1}>
+                    {item.author ? item.author : "Unknown"}
+                  </Text>
+                </View>
+                <View //..............................progressBar
+                  style={{
+                    flex: 0.5,
+                    marginVertical: 15,
+                    marginHorizontal: 15,
+                    flexDirection: "row"
+                  }}
+                >
+                  <Slider
+                    onValueChange={value => this.editSlider(value)}
+                    value={this.state.playSeconds}
+                    maximumValue={this.state.duration}
+                    maximumTrackTintColor="gray"
+                    minimumTrackTintColor="white"
+                    thumbTintColor="white"
+                    style={{
+                      flex: 1,
+                      alignSelf: "center"
+                    }}
                   />
-                </TouchableOpacity>
-              </View>
-            </Animated.View>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "center"
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => this.nextPrevSong("prev")}
+                    style={styles.bodyButton}
+                  >
+                    <Icon
+                      name="skip-back"
+                      size={18}
+                      color={customColor.textPrimaryColor}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={this.resumePause}
+                    style={styles.bodyButton}
+                  >
+                    <Icon
+                      name={this.state.pause ? "play" : "pause"}
+                      size={22}
+                      color={customColor.textPrimaryColor}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.nextPrevSong("next")}
+                    style={styles.bodyButton}
+                  >
+                    <Icon
+                      name="skip-forward"
+                      size={18}
+                      color={customColor.textPrimaryColor}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </Animated.View>
+            </LinearGradient>
           </Animated.View>
         </React.Fragment>
       );

@@ -134,6 +134,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-linear-gradient')
+    implementation project(':react-native-music-control')
     implementation project(':react-native-sound')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-get-music-files')
