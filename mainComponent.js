@@ -40,7 +40,6 @@ export default class MainComponent extends Component {
 
   componentWillUnmount() {
     AsyncStorage.setItem("songsArray", JSON.stringify(this.state.songsArray));
-    AsyncStorage.setItem("queueList", JSON.stringify(this.state.queueList));
   }
 
   getMedia = async () => {
@@ -56,8 +55,12 @@ export default class MainComponent extends Component {
         let index = JSON.parse(await AsyncStorage.getItem("currentSong"));
         let songsArray = JSON.parse(await AsyncStorage.getItem("songsArray"));
         let queueList = JSON.parse(await AsyncStorage.getItem("queueList"));
-
-        if (songsArray.length) {
+        this.pause = JSON.parse(await AsyncStorage.getItem("playing"));
+        this.duration = JSON.parse(await AsyncStorage.getItem("duration"));
+        this.playSeconds = JSON.parse(
+          await AsyncStorage.getItem("playSeconds")
+        );
+        if (songsArray) {
           this.setState({
             loading: true,
             songsArray,
@@ -114,6 +117,9 @@ export default class MainComponent extends Component {
               ref="nowChild"
               index={this.state.index}
               queueList={this.state.queueList}
+              pause={this.pause}
+              duration={this.duration}
+              playSeconds={this.playSeconds}
             />
           </View>
         );
@@ -133,12 +139,7 @@ export default class MainComponent extends Component {
         );
       }
     } else {
-      return (
-        <View style={styles.container}>
-          <Text>Beeplayer</Text>
-          <ProgressBarAndroid styleAttr="Horizontal" />
-        </View>
-      );
+      return null;
     }
   }
 }

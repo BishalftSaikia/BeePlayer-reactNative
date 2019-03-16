@@ -16,8 +16,6 @@ import {
 import { customColor } from "../../customColor";
 import LinearGradient from "react-native-linear-gradient";
 
-import MusicControl from "react-native-music-control";
-
 import Icon from "react-native-vector-icons/Feather";
 
 const screenHeight = Dimensions.get("window").height;
@@ -84,24 +82,35 @@ export default class NowPlaying extends Component {
     });
   }
 
-  async componentDidMount() {
-    this.setState({
-      queueList: this.props.queueList,
-      songIndex: this.props.index
-    });
-    let wasPlaying = JSON.parse(await AsyncStorage.getItem("playing"));
-    if (item && wasPlaying) {
+  componentDidMount() {
+    let pause = this.props.pause;
+    let duration = this.props.duration;
+    let playSeconds = this.props.playSeconds;
+    if (item && pause) {
       song = new mediaPlayer(item.path, "", error => {
         if (error) {
           ToastAndroid.show("error on init play", ToastAndroid.SHORT);
         }
       });
+      song.setCurrentTime(playSeconds);
+      this.setState({
+        queueList: this.props.queueList,
+        songIndex: this.props.index,
+        duration,
+        playSeconds
+      });
     } else {
-      this.setState({ pause: wasPlaying });
+      this.setState({
+        pause,
+        duration,
+        playSeconds,
+        queueList: this.props.queueList,
+        songIndex: this.props.index
+      });
     }
-    this.allMusicControlCrap();
+
     this.timeout = setInterval(() => {
-      if (song && this.state.pause == false) {
+      if (song && !this.state.pause) {
         song.getCurrentTime(sec => {
           this.progressWidth.setValue(sec);
           this.setState({
@@ -113,13 +122,11 @@ export default class NowPlaying extends Component {
   }
 
   componentWillUnmount() {
-    AsyncStorage.setItem("playing", JSON.stringify(this.state.pause));
     AsyncStorage.setItem("currentSong", JSON.stringify(this.state.songIndex));
-  }
-
-  allMusicControlCrap() {
-    //events listener
-    MusicControl.enableBackgroundMode(true);
+    AsyncStorage.setItem("queueList", JSON.stringify(this.state.queueList));
+    AsyncStorage.setItem("playing", JSON.stringify(this.state.pause));
+    AsyncStorage.setItem("duration", JSON.stringify(this.state.duration));
+    AsyncStorage.setItem("playSeconds", JSON.stringify(this.state.playSeconds));
   }
 
   timeConverter(millis) {
@@ -175,6 +182,7 @@ export default class NowPlaying extends Component {
       } else {
         song.pause();
       }
+      AsyncStorage.setItem("playing", JSON.stringify(!this.state.pause));
       this.setState({ pause: !this.state.pause });
     }
   };
@@ -223,8 +231,8 @@ export default class NowPlaying extends Component {
       extrapolate: "clamp"
     });
     animatedBorderRadius = this.animation.y.interpolate({
-      inputRange: [0, 0.2, screenHeight - 90],
-      outputRange: [12, 0, 0],
+      inputRange: [0, 5, screenHeight - 90],
+      outputRange: [10, 2, 2],
       extrapolate: "clamp"
     });
     animatedImageHeight = this.animation.y.interpolate({
@@ -317,10 +325,12 @@ export default class NowPlaying extends Component {
                     justifyContent: "center"
                   }}
                   onPress={() => {
+                    //.......................Expand on Header touch
                     Animated.spring(this.animation.y, {
                       toValue: 0,
                       tension: 60
                     }).start();
+                    this.setState({ statusbarColor: "#292e49" });
                   }}
                 >
                   <Animated.Image
