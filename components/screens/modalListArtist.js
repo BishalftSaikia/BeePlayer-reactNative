@@ -67,7 +67,7 @@ export default class ModalList extends Component {
               </View>
             </ImageBackground>
           }
-          ItemSeparatorComponent={this.renderSeparator}
+          //ItemSeparatorComponent={this.renderSeparator}
           ListFooterComponent={<View style={{ height: 0, marginBottom: 14 }} />}
           renderItem={({ item, index }) => (
             <TouchableOpacity

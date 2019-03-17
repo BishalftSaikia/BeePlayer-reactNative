@@ -90,9 +90,12 @@ export default class NowPlaying extends Component {
       song = new mediaPlayer(item.path, "", error => {
         if (error) {
           ToastAndroid.show("error on init play", ToastAndroid.SHORT);
+        } else {
+          song.setCurrentTime(playSeconds);
         }
       });
-      song.setCurrentTime(playSeconds);
+
+      this.progressWidth.setValue(playSeconds);
       this.setState({
         queueList: this.props.queueList,
         songIndex: this.props.index,
@@ -231,7 +234,7 @@ export default class NowPlaying extends Component {
       extrapolate: "clamp"
     });
     animatedBorderRadius = this.animation.y.interpolate({
-      inputRange: [0, 5, screenHeight - 90],
+      inputRange: [0, 0.1, screenHeight - 90],
       outputRange: [10, 2, 2],
       extrapolate: "clamp"
     });
@@ -434,7 +437,6 @@ export default class NowPlaying extends Component {
                   style={{
                     flex: 0.5,
                     marginVertical: 15,
-                    marginHorizontal: 15,
                     flexDirection: "row"
                   }}
                 >
@@ -451,11 +453,12 @@ export default class NowPlaying extends Component {
                     }}
                   />
                 </View>
-                <View
+                <View //................playPauseNextPrev Button Layout
                   style={{
-                    flex: 1,
+                    flex: 2,
                     flexDirection: "row",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    paddingBottom: 10
                   }}
                 >
                   <TouchableOpacity

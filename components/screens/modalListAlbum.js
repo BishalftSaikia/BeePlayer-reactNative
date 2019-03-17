@@ -115,7 +115,7 @@ export default class ModalList extends Component {
               </View>
             </View>
           }
-          ItemSeparatorComponent={this.renderSeparator}
+          //ItemSeparatorComponent={this.renderSeparator}
           ListFooterComponent={<View style={{ height: 0, marginBottom: 20 }} />}
           renderItem={({ item, index }) => (
             <TouchableOpacity
@@ -135,7 +135,7 @@ export default class ModalList extends Component {
 }
 const styles = StyleSheet.create({
   View1: {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     height: screenHeight / 2,
     borderWidth: 1,
     borderColor: "grey",
