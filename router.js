@@ -15,9 +15,12 @@ export default class RootRouter extends Component {
     BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
   }
 
-  onBackPress = () => {
-    if (Actions.currentScene === "Songs") {
+  onBackPress = async () => {
+    let bool = this.props.nowPlayingStat("state");
+    if (Actions.currentScene === "_mediaList" && bool == false) {
       BackHandler.exitApp();
+    } else if (bool == true) {
+      this.props.nowPlayingStat("closeNowPlaying");
     }
   };
 

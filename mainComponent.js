@@ -102,6 +102,15 @@ export default class MainComponent extends Component {
     this.refs.nowChild.playSong(index, songlist);
   };
 
+  nowPlayingStat = stat => {
+    if (stat == "state") {
+      let bool = this.refs.nowChild.nowPlayingStat("state");
+      return bool;
+    } else if (stat == "closeNowPlaying") {
+      this.refs.nowChild.nowPlayingStat("closeNowPlaying");
+    }
+  };
+
   render() {
     if (this.state.loading) {
       if (this.state.songsArray.length) {
@@ -112,6 +121,7 @@ export default class MainComponent extends Component {
             <RootRouter //.........................................................RootRouter
               playTrack={this.newSongPlay}
               songsArray={this.state.songsArray}
+              nowPlayingStat={this.nowPlayingStat}
             />
             <NowPlaying //.........................................................NowPlaying
               ref="nowChild"

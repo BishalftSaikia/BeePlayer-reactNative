@@ -31,7 +31,8 @@ export default class NowPlaying extends Component {
     pause: true,
     playSeconds: 0,
     duration: 0,
-    statusbarColor: "#bbd2c5"
+    statusbarColor: "#bbd2c5",
+    nowPlayingOpen: false
   };
   componentWillMount() {
     item = this.props.queueList[this.props.index];
@@ -69,14 +70,14 @@ export default class NowPlaying extends Component {
             toValue: -screenHeight + 90,
             tension: 40
           }).start();
-          this.setState({ statusbarColor: "#292e49" });
+          this.setState({ statusbarColor: "#292e49", nowPlayingOpen: true });
         } else if (gestureState.dy > 0) {
           //.......................Pan moving Downward
           Animated.spring(this.animation.y, {
             toValue: screenHeight - 90,
             tension: 40
           }).start();
-          this.setState({ statusbarColor: "#bbd2c5" });
+          this.setState({ statusbarColor: "#bbd2c5", nowPlayingOpen: false });
         }
       }
     });
@@ -218,6 +219,21 @@ export default class NowPlaying extends Component {
     }
   };
 
+  nowPlayingStat = stat => {
+    if (stat == "state") {
+      return this.state.nowPlayingOpen;
+    } else if (stat == "closeNowPlaying") {
+      Animated.spring(this.animation.y, {
+        toValue: screenHeight - 90,
+        tension: 60
+      }).start();
+      this.setState({
+        statusbarColor: "#bbd2c5",
+        nowPlayingOpen: false
+      });
+    }
+  };
+
   render() {
     const animatedHeight = {
       transform: this.animation.getTranslateTransform()
@@ -333,7 +349,10 @@ export default class NowPlaying extends Component {
                       toValue: 0,
                       tension: 60
                     }).start();
-                    this.setState({ statusbarColor: "#292e49" });
+                    this.setState({
+                      statusbarColor: "#292e49",
+                      nowPlayingOpen: true
+                    });
                   }}
                 >
                   <Animated.Image
