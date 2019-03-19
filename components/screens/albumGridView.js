@@ -1,7 +1,15 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Text,
+  View,
+  ImageBackground
+} from "react-native";
 
 import { customColor } from "../../customColor";
+import Icon from "react-native-vector-icons/Feather";
 
 export default class AlbumGridView extends Component {
   render() {
@@ -13,14 +21,32 @@ export default class AlbumGridView extends Component {
         style={[styles.container, { width: widthItem }]}
         onPress={() => this.props.modalFn(index)}
       >
-        <Image
-          style={{ width: widthItem, height: 100, flex: 3 }}
+        <ImageBackground
+          style={[styles.ImageStyle, { width: widthItem }]}
           source={
             item[0].cover
               ? { uri: item[0].cover }
               : require("../../iconPNG/white.png")
           }
-        />
+        >
+          <TouchableOpacity
+            style={{
+              height: 30,
+              width: 30,
+              borderRadius: 50,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "white",
+              margin: 10
+            }}
+            onPress={() => {
+              this.props.playTrack(0, item);
+            }}
+          >
+            <Icon name="play" size={12} color={customColor.textPrimaryColor} />
+          </TouchableOpacity>
+        </ImageBackground>
+
         <View
           style={{
             flex: 1,
@@ -58,5 +84,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 12,
     height: 170
+  },
+  ImageStyle: {
+    height: 100,
+    flex: 3,
+    justifyContent: "flex-end",
+    alignItems: "flex-end"
   }
 });

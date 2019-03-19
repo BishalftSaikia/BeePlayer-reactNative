@@ -6,7 +6,10 @@ const customColor1 = {
   activeColor: "#292e49",
   lineSeperator: "#aaaaaa",
   textPrimaryColor: "#000",
-  textSecondaryColor: "#000"
+  textSecondaryColor: "#000",
+
+  gradient: ["#bbd2c5", "#536976", "#292e49"],
+  gradientReverse: ["#292e49", "#536976", "#bbd2c5"]
 };
 
 let customColor = customColor1;

@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import LinearGradient from "react-native-linear-gradient";
+import Icon from "react-native-vector-icons/Feather";
 
 import { customColor } from "../../customColor";
 
@@ -38,8 +39,18 @@ export default class MediaList extends Component {
     this.setState({ songsArray: songStorage });
   }
 
-  playMedia = index => {
-    this.props.playTrack(index, this.state.songsArray);
+  playMedia = (index, songList) => {
+    let queueList = songList ? songList : this.state.songsArray;
+    this.props.playTrack(index, queueList);
+  };
+
+  shuffleList = () => {
+    let mainArr = [].concat(this.state.songsArray);
+    for (let i = mainArr.length - 1; i > -1; i--) {
+      let j = Math.floor(Math.random() * i);
+      [mainArr[i], mainArr[j]] = [mainArr[j], mainArr[i]];
+    }
+    this.playMedia(0, mainArr);
   };
 
   timeConverter(millis) {
@@ -98,8 +109,25 @@ export default class MediaList extends Component {
         colors={["#bbd2c5", "#536976", "#292e49"]}
       >
         <StatusBar barStyle="dark-content" />
+        <View style={{ width: "100%", height: 40, justifyContent: "center" }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.shuffleList();
+            }}
+            style={{ flexDirection: "row", paddingLeft: 16 }}
+          >
+            <Icon
+              name="shuffle"
+              size={15}
+              color={customColor.textPrimaryColor}
+              style={{ paddingRight: 10 }}
+            />
+            <Text style={styles.titleText}>Shuffle Play</Text>
+          </TouchableOpacity>
+        </View>
         <FlatList
           //ItemSeparatorComponent={this.lineSeperator}
+
           ListFooterComponent={
             <View style={{ height: 0, marginBottom: "18%" }} />
           }

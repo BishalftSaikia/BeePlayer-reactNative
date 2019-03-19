@@ -107,6 +107,7 @@ export default class MainComponent extends Component {
       if (this.state.songsArray.length) {
         return (
           <View style={{ flex: 1 }}>
+            <StatusBar backgroundColor="#bbd2c5" />
             <NavBar heading="Beeplayer" />
             <RootRouter //.........................................................RootRouter
               playTrack={this.newSongPlay}

@@ -90,6 +90,7 @@ export default class AlbumList extends Component {
               item={item}
               index={index}
               modalFn={this.modalFn}
+              playTrack={this.props.playTrack}
             />
           )}
           keyExtractor={item => item[0].id}
