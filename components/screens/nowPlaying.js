@@ -113,6 +113,7 @@ export default class NowPlaying extends Component {
       });
     }
 
+    //Called every 1 milli sec
     this.timeout = setInterval(() => {
       if (song && !this.state.pause) {
         song.getCurrentTime(sec => {
@@ -138,9 +139,13 @@ export default class NowPlaying extends Component {
     return Number(seconds);
   }
 
+  // Controlling (all)flatlist clicks
   playSong = (index, songList) => {
-    this.stopPlaying();
-    this.playTrack(index, songList);
+    if (item != songList[index]) {
+      //this.props.updateCurrentSong(songList[index]);
+      this.stopPlaying();
+      this.playTrack(index, songList);
+    }
   };
 
   playTrack = (index, songList) => {
@@ -197,6 +202,7 @@ export default class NowPlaying extends Component {
         this.playSong(this.state.songIndex + 1, this.state.queueList);
       }
     } else {
+      //previous
       if (this.state.songIndex > 0) {
         this.playSong(this.state.songIndex - 1, this.state.queueList);
       }

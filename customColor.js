@@ -12,6 +12,9 @@ const customColor1 = {
   gradientReverse: ["#292e49", "#536976", "#bbd2c5"]
 };
 
+const customColor2 = {};
+
+// add button in settings to change the object
 let customColor = customColor1;
 
 export { customColor };

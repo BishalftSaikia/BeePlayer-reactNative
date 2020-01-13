@@ -78,7 +78,14 @@ export default class MediaList extends Component {
         onPress={() => this.playMedia(index)}
         style={styles.itemCard}
       >
-        <View style={styles.titleCard}>
+        <View
+          style={[
+            styles.titleCard,
+            item == this.props.currentSong
+              ? { borderColor: "#bbd2c5", borderLeftWidth: 1 }
+              : null
+          ]}
+        >
           <Text style={styles.titleText} numberOfLines={1}>
             {item.title ? item.title : item.fileName}
           </Text>

@@ -9,20 +9,21 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  ProgressBarAndroid,
   StatusBar
 } from "react-native";
 import NowPlaying from "./components/screens/nowPlaying";
 import RootRouter from "./router";
 import MusicFiles from "react-native-get-music-files";
 import NavBar from "./components/screens/navBar";
+import Loading from "./components/screens/Loading";
 
 export default class MainComponent extends Component {
   state = {
     loading: false,
     songsArray: [],
     queueList: [],
-    index: null
+    index: null,
+    currentSong: null
   };
 
   componentWillMount() {
@@ -102,6 +103,10 @@ export default class MainComponent extends Component {
     this.refs.nowChild.playSong(index, songlist);
   };
 
+  updateCurrentSong = item => {
+    this.setState({ currentSong: item });
+  };
+
   nowPlayingStat = stat => {
     if (stat == "state") {
       let bool = this.refs.nowChild.nowPlayingStat("state");
@@ -122,6 +127,7 @@ export default class MainComponent extends Component {
               playTrack={this.newSongPlay}
               songsArray={this.state.songsArray}
               nowPlayingStat={this.nowPlayingStat}
+              currentSong={this.state.currentSong}
             />
             <NowPlaying //.........................................................NowPlaying
               ref="nowChild"
@@ -130,6 +136,7 @@ export default class MainComponent extends Component {
               pause={this.pause}
               duration={this.duration}
               playSeconds={this.playSeconds}
+              updateCurrentSong={this.updateCurrentSong}
             />
           </View>
         );
@@ -149,7 +156,7 @@ export default class MainComponent extends Component {
         );
       }
     } else {
-      return null;
+      return <Loading />;
     }
   }
 }

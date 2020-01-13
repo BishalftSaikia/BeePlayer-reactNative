@@ -17,7 +17,7 @@ export default class RootRouter extends Component {
 
   onBackPress = async () => {
     let bool = this.props.nowPlayingStat("state");
-    if (Actions.currentScene === "_mediaList" && bool == false) {
+    if (bool == false) {
       BackHandler.exitApp();
     } else if (bool == true) {
       this.props.nowPlayingStat("closeNowPlaying");
@@ -32,6 +32,7 @@ export default class RootRouter extends Component {
             key="tab"
             playTrack={this.props.playTrack} //..... Changing Song
             songsArray={this.props.songsArray}
+            currentSong={this.props.currentSong}
             title="Home"
             tabs
             tabBarPosition="top"
