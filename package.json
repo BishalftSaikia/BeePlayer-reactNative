@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react": "16.6.3",
-    "react-native": "0.58.4",
+    "react-native": "0.70.2",
     "react-native-get-music-files": "^2.1.0",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-music-control": "^0.9.9",
